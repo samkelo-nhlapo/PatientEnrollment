@@ -31,12 +31,15 @@ namespace PatientEnrollmentVS.Models
         public string PhoneTypeId { get; set; }
         public string PhoneTypeDescription { get; set; }
 
+        //Gender
+        public string GenderId { get; set; }
+        public string GenderDescription { get; set; }
+
         //Patient
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ID_Number { get; set; }
         public string DateOfBirth { get; set; }
-        public string GenderIDFK { get; set; }
         public string PhoneNumber { get; set; }
         public string PhoneTypeIDFK { get; set; }
         public string Email { get; set; }

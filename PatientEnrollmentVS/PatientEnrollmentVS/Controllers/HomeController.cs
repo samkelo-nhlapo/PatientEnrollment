@@ -90,6 +90,16 @@ namespace PatientEnrollmentVS.Controllers
                 return new JsonResult { Data = eventPhoneType, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
+
+        public JsonResult GetGender()
+        {
+            using(var db = GetContxt())
+            {
+                var eventGender = db.Database.SqlQuery<LocationModel>(string.Format("Profile.spGetGender")).ToList();
+                return new JsonResult { Data = eventGender, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
+
         [HttpPost]
         public JsonResult SavePatient(LocationModel locationModel)
         {
@@ -104,7 +114,6 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@LastName", locationModel.LastName));
                 cmd.Parameters.Add(new SqlParameter("@IDNumber", locationModel.ID_Number));
                 cmd.Parameters.Add(new SqlParameter("@DateOfBirth", locationModel.DateOfBirth));
-                cmd.Parameters.Add(new SqlParameter("@GenderDescription", Int32.Parse(locationModel.GenderIDFK)));
                 cmd.Parameters.Add(new SqlParameter("@PhoneNumber", locationModel.PhoneNumber));
                 cmd.Parameters.Add(new SqlParameter("@PhoneTypeIDFK", Int32.Parse(locationModel.PhoneTypeIDFK)));
                 cmd.Parameters.Add(new SqlParameter("@Email", locationModel.Email));

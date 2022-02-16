@@ -26,9 +26,21 @@
         @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block" })
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <label>GenderIDFK</label>
         @Html.TextBoxFor(x => x.GenderIDFK, new { @class = "select-block" })
+    </div>*@
+
+    <div class="row">
+        <label>Gender</label>
+        @Html.DropDownListFor(x => x.GenderId, new List<SelectListItem>()
+                { new SelectListItem()
+                    { 
+                        Value = Model.GenderId, 
+                        Text = Model.GenderDescription, 
+                        Selected = true
+                    } 
+                }, "0", new { id = "dllGetGender", @Class = "select-block"})
     </div>
 
 
@@ -166,17 +178,19 @@
     <label>CountryIDFK</label>
         @Html.TextBoxFor(x => x.CountryIDFK, new { @class = "select-block" })*@
 
-    <label>SecondaryCarrierName</label>
+        <label>SecondaryCarrierName</label>
         @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block" })
-    <label>SPolicyHolderPhoneNumber</label>
+
+        <label>SPolicyHolderPhoneNumber</label>
         @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block" })
-    <label>SPolicyHolderName</label>
+    
+        <label>SPolicyHolderName</label>
         @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block" })
-    <label>SPolicyHolderDateOfBirth</label>
+        <label>SPolicyHolderDateOfBirth</label>
         @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block" })
-    <label>SPolicyHolderRelationship</label>
+        <label>SPolicyHolderRelationship</label>
         @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block" })
-    <label>SPolicyHolderGenderIDFK</label>
+        <label>SPolicyHolderGenderIDFK</label>
         @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" })
     </div>
 
@@ -322,26 +336,58 @@
                 alert("emailType not successful");
             }
         })
+
+        debugger
+        $.ajax({
+            url: "/Home/GetGender",
+            dataType: "json",
+            cache: true,
+            async: true,
+            global: false,
+            success: function (data)
+            {
+                var items = "<option value ='" + "0" + "'>" + "Select Gender" + "</option>";
+
+                $.each(data, function (i, value)
+                {
+                    items += "<option value ='" + value.GenderId + "'>" + value.GenderDescription + "</option>";
+
+                    $('#dllGetGender').html(items);
+                })
+
+            },
+            error: function (xhr)
+            {
+                alert("Gender not successful");
+            }
+        })
     })
 </script>
 <script>
 
-    function SaveButton()
-    {
-        $.ajax({
-            url: "/Home/SavePatient",
-            type: "POST",
-            data: $("#frmHome").serialize(),
-            async: false,
-            error: function (xhr, status, error)
-            {
-                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-            },
-            success: function ()
-            {
-                alert("successful clicked");
-            }
-        })
-        //alert("i clicked this");
-    }
+    //debugger
+    //function SaveButton()
+    //{
+    //    var locationModel = {};
+    //    locationModel.FirstName = $("[id*=txtFirstName]").val();
+    //    locationModel.LastName = $("[id*=txtLastName]").val();
+    //    locationModel.ID_Number = $("[id*=txtID_Number]").val();
+    //    locationModel.DateOfBirth = $("[id*=txtDateOfBirth]").val();
+    //    locationModel.Gender
+    //    $.ajax({
+    //        url: "/Home/SavePatient",
+    //        type: "POST",
+    //        data: $("#frmHome").serialize(),
+    //        async: false,
+    //        error: function (xhr, status, error)
+    //        {
+    //            alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+    //        },
+    //        success: function (Record)
+    //        {
+                
+    //        }
+    //    })
+    //    //alert("i clicked this");
+    //}
 </script>

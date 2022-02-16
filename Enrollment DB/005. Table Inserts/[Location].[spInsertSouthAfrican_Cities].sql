@@ -1,7 +1,7 @@
 USE [PatientEnrollment]
 GO
 
-/****** Object:  StoredProcedure [Location].[spInsertSouthAfrican_Cities]    Script Date: 03-Feb-22 09:24:07 PM ******/
+/****** Object:  StoredProcedure [Location].[spInsertSouthAfrican_Cities]    Script Date: 17-Feb-22 12:45:22 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -19,7 +19,8 @@ ALTER   PROC [Location].[spInsertSouthAfrican_Cities]
 )
 AS
 BEGIN
-	
+		
+		
 	
 		INSERT INTO Location.Cities
 		(
