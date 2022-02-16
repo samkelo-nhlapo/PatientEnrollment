@@ -15,6 +15,11 @@
         <label>Last Name</label>
         @Html.TextBoxFor(x => x.LastName, new { @class = "select-block" })
     </div>
+
+    <div class="row">
+        <label>ID Number</label>
+        @Html.TextBoxFor(x => x.ID_Number, new {@class = "select-block"})
+    </div>
     
     <div class="row">
         <label>DateOfBirth</label>
@@ -175,7 +180,9 @@
         @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" })
     </div>
 
-
+    <div class="row">
+        <input type="button" value="Save Event" class="btn btn-primary" onclick="SaveButton()" />
+    </div>
 }
 
 <script type="text/javascript">
@@ -254,7 +261,7 @@
             async: true,
             global: false,
             success: function (data) {
-                /*alert("successfull merital ");*/
+
                 var items = "<option value ='" + "0" + "'>" + "Select Status" + "</option>";
 
                 $.each(data, function (i, value) {
@@ -284,8 +291,6 @@
                     $('#dllGetPhoneType').html(items);
                 })
 
-                /*alert("phoneType successful");*/
-
             },
             error: function (xhr)
             {
@@ -310,7 +315,7 @@
 
                     $('#dllGetEmailtype').html(items);
                 })
-                /*alert("EmailType successfull ");*/
+
             },
             error: function (xhr)
             {
@@ -318,4 +323,25 @@
             }
         })
     })
+</script>
+<script>
+
+    function SaveButton()
+    {
+        $.ajax({
+            url: "/Home/SavePatient",
+            type: "POST",
+            data: $("#frmHome").serialize(),
+            async: false,
+            error: function (xhr, status, error)
+            {
+                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+            },
+            success: function ()
+            {
+                alert("successful clicked");
+            }
+        })
+        //alert("i clicked this");
+    }
 </script>

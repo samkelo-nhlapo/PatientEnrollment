@@ -34,12 +34,13 @@ namespace PatientEnrollmentVS.Models
         //Patient
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ID_Number { get; set; }
         public string DateOfBirth { get; set; }
         public string GenderIDFK { get; set; }
         public string PhoneNumber { get; set; }
-        public string PhoneType { get; set; }
+        public string PhoneTypeIDFK { get; set; }
         public string Email { get; set; }
-        public string EmailType { get; set; }
+        public string EmailTypeIDFK { get; set; }
         public string Line1 { get; set; }
         public string Line2 { get; set; }
         public string CityIDFK { get; set; }

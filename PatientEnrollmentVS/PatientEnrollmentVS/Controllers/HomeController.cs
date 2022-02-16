@@ -90,7 +90,7 @@ namespace PatientEnrollmentVS.Controllers
                 return new JsonResult { Data = eventPhoneType, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
-
+        [HttpPost]
         public JsonResult SavePatient(LocationModel locationModel)
         {
             string connection = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
@@ -102,12 +102,13 @@ namespace PatientEnrollmentVS.Controllers
 
                 cmd.Parameters.Add(new SqlParameter("@FirstName", locationModel.FirstName));
                 cmd.Parameters.Add(new SqlParameter("@LastName", locationModel.LastName));
+                cmd.Parameters.Add(new SqlParameter("@IDNumber", locationModel.ID_Number));
                 cmd.Parameters.Add(new SqlParameter("@DateOfBirth", locationModel.DateOfBirth));
                 cmd.Parameters.Add(new SqlParameter("@GenderDescription", Int32.Parse(locationModel.GenderIDFK)));
                 cmd.Parameters.Add(new SqlParameter("@PhoneNumber", locationModel.PhoneNumber));
-                cmd.Parameters.Add(new SqlParameter("@PhoneType", Int32.Parse(locationModel.PhoneType)));
+                cmd.Parameters.Add(new SqlParameter("@PhoneTypeIDFK", Int32.Parse(locationModel.PhoneTypeIDFK)));
                 cmd.Parameters.Add(new SqlParameter("@Email", locationModel.Email));
-                cmd.Parameters.Add(new SqlParameter("@EmailType", Int32.Parse(locationModel.EmailType)));
+                cmd.Parameters.Add(new SqlParameter("@EmailTypeIDFK", Int32.Parse(locationModel.EmailTypeIDFK)));
                 cmd.Parameters.Add(new SqlParameter("@Line1", locationModel.Line1));
                 cmd.Parameters.Add(new SqlParameter("@Line2", locationModel.Line2));
                 cmd.Parameters.Add(new SqlParameter("@CityIDFK", Int32.Parse(locationModel.CityIDFK)));
