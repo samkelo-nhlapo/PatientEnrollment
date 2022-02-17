@@ -365,29 +365,30 @@
 </script>
 <script>
 
-    //debugger
-    //function SaveButton()
-    //{
-    //    var locationModel = {};
-    //    locationModel.FirstName = $("[id*=txtFirstName]").val();
-    //    locationModel.LastName = $("[id*=txtLastName]").val();
-    //    locationModel.ID_Number = $("[id*=txtID_Number]").val();
-    //    locationModel.DateOfBirth = $("[id*=txtDateOfBirth]").val();
-    //    locationModel.Gender
-    //    $.ajax({
-    //        url: "/Home/SavePatient",
-    //        type: "POST",
-    //        data: $("#frmHome").serialize(),
-    //        async: false,
-    //        error: function (xhr, status, error)
-    //        {
-    //            alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-    //        },
-    //        success: function (Record)
-    //        {
+    debugger
+    function SaveButton()
+    {
+        var locationModel = {};
+        locationModel.FirstName = $("[id*=txtFirstName]").val();
+        locationModel.LastName = $("[id*=txtLastName]").val();
+        locationModel.ID_Number = $("[id*=txtID_Number]").val();
+        locationModel.DateOfBirth = $("[id*=txtDateOfBirth]").val();
+        locationModel.Gender
+
+        $.ajax({
+            url: "/Home/SavePatient",
+            type: "POST",
+            data: $("#frmHome").serialize(),//serialize means to publish
+            async: false,
+            error: function (xhr, status, error)
+            {
+                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+            },
+            success: function (Record)
+            {
                 
-    //        }
-    //    })
-    //    //alert("i clicked this");
+            }
+        })
+        //alert("i clicked this");
     //}
 </script>
