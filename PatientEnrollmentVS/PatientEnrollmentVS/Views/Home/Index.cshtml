@@ -382,22 +382,22 @@
         else
         {
             debugger
-            $.ajax({
-                url: "/Home/SavePatient",
-                type: "POST",
-                data: $("#frmHome").serialize(),
-                async: false,
-                success: function (data)
-                {
+            //$.ajax({
+            //    url: "/Home/SavePatient",
+            //    type: "POST",
+            //    data: $("#frmHome").serialize(),
+            //    async: false,
+            //    success: function (data)
+            //    {
 
-                    alert("was successful" );
-                },
-                error: function (xhr, status, error) {
-                    alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-                }
+            //        alert("was successful" );
+            //    },
+            //    error: function (xhr, status, error) {
+            //        alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+            //    }
 
 
-            })
+            //})
             /*alert("successful");*/
         }
         /*alert("successful");*/
