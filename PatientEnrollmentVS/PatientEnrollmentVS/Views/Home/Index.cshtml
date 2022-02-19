@@ -11,25 +11,20 @@
 {
     <div class="row">
         <label>First Name</label>
-        @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName" })
         <label>Last Name</label>
-        @Html.TextBoxFor(x => x.LastName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName" })
     </div>
 
     <div class="row">
         <label>ID Number</label>
-        @Html.TextBoxFor(x => x.ID_Number, new {@class = "select-block"})
+        @Html.TextBoxFor(x => x.ID_Number, new {@class = "select-block", id = "IDNumber"})
     </div>
     
     <div class="row">
         <label>DateOfBirth</label>
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block" , id = "DateOfBirth"})
     </div>
-
-    @*<div class="row">
-        <label>GenderIDFK</label>
-        @Html.TextBoxFor(x => x.GenderIDFK, new { @class = "select-block" })
-    </div>*@
 
     <div class="row">
         <label>Gender</label>
@@ -46,7 +41,7 @@
 
     <div class="row">
         <label>PhoneNumber</label>
-        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "PhoneNumber" })
         
         @Html.DropDownListFor(x => x.PhoneTypeId, new List<SelectListItem>()
                 { new SelectListItem()
@@ -57,13 +52,11 @@
                     }
                 },"0", new { id = "dllGetPhoneType", @class = "select-block"})
 
-        @*<label>PhoneType</label>
-        @Html.TextBoxFor(x => x.PhoneType, new { @class = "select-block" })*@
     </div>
 
     <div class="row">
         <label>Email</label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.Email, new { @class = "select-block" , id = "Email"})
 
         @Html.DropDownListFor(x => x.EmailTypeId, new List<SelectListItem>()
                 { new SelectListItem()
@@ -74,18 +67,17 @@
                     }
                 }, "0", new { id = "dllGetEmailtype", @class = "select-block" })
 
-        @*<label>EmailType</label>
-        @Html.TextBoxFor(x => x.EmailType, new { @class = "select-block" })*@
+
     </div>
 
     <div class="row">
         <label>Line1</label>
-        @Html.TextBoxFor(x => x.Line1, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "Line1" })
     </div>
 
     <div class="row">
         <label>Line2</label>
-        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block" , id = "Line2"})
     </div>
 
     <div class="row">
@@ -125,10 +117,6 @@
             }, "0", new { id = "dllGetCities", @class = "select-block" })
     </div>*@
     
-    @*<div class="row">
-        <label>MaritalStatusIDFK</label>
-        @Html.TextBoxFor(x => x.MaritalStatusIDFK, new { @class = "select-block" })
-    </div>*@
 
     <div class="row">
         <label>Merital Status</label>
@@ -144,54 +132,46 @@
 
     <div class="row">
         <label>MedicationList</label>
-        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block" , id = "MedicationList"})
     </div>
 
     <div class="row">
         <label>EmergencyName</label>
-        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block" , id = "EmergencyName"})
         <label>Relationship</label>
-        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block" , id = "Relationship"})
     </div>
 
     <div class="row">
         <label>PrimaryCarrierName</label>
-        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block" , id = "PrimaryCarrierName" })
         <label>FPolicyHolderPhoneNumber</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderPhoneNumber, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FPolicyHolderPhoneNumber, new { @class = "select-block", id = "FPolicyHolderPhoneNumber" })
         <label>FPolicyHolderName</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FPolicyHolderName, new { @class = "select-block", id = "FPolicyHolderName" })
         <label>FPolicyHolderDateOfBirth</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderDateOfBirth, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FPolicyHolderDateOfBirth, new { @class = "select-block", id = "FPolicyHolderDateOfBirth" })
         <label>FPolicyHolderRelationship</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block" , id = "FPolicyHolderRelationship" })
         <label>FPolicyHolderGenderIDFK</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderGenderIDFK, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.FPolicyHolderGenderIDFK, new { @class = "select-block", id = "FPolicyHolderGenderIDFK" })
     </div>
     <div class="row">
-        
-
-    @*<label>CityIDFK</label>
-        @Html.TextBoxFor(x => x.CityIDFK, new { @class = "select-block" })
-    <label>ProvinceIDFK</label>
-        @Html.TextBoxFor(x => x.ProvinceIDFK, new { @class = "select-block" })
-    <label>CountryIDFK</label>
-        @Html.TextBoxFor(x => x.CountryIDFK, new { @class = "select-block" })*@
 
         <label>SecondaryCarrierName</label>
-        @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block", id = "SecondaryCarrierName" })
 
         <label>SPolicyHolderPhoneNumber</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block" , id = "SPolicyHolderPhoneNumber" })
     
         <label>SPolicyHolderName</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block", id = "SPolicyHolderName" })
         <label>SPolicyHolderDateOfBirth</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block" })
-        <label>SPolicyHolderRelationship</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block", id = "SPolicyHolderDateOfBirth" })
+    <label>SPolicyHolderRelationship</label>
+        @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block", id = "SPolicyHolderRelationship" })
         <label>SPolicyHolderGenderIDFK</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" })
+        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" , id = "SPolicyHolderGenderIDFK" })
     </div>
 
     <div class="row">
@@ -267,7 +247,7 @@
         //    }
         //})
 
-        debugger
+
         $.ajax({
             url: "/Home/GetMeritalStatus",
             dataType: "json",
@@ -289,7 +269,7 @@
             }
         })
 
-        debugger
+
         $.ajax({
             url: "/Home/GetPhoneType",
             dataType: "json",
@@ -312,7 +292,7 @@
             }
         })
 
-        debugger
+
         $.ajax({
             url: "/Home/GetEmailType",
             dataType: "json",
@@ -337,7 +317,6 @@
             }
         })
 
-        debugger
         $.ajax({
             url: "/Home/GetGender",
             dataType: "json",
@@ -365,30 +344,63 @@
 </script>
 <script>
 
-    debugger
+    
     function SaveButton()
     {
-        var locationModel = {};
-        locationModel.FirstName = $("[id*=txtFirstName]").val();
-        locationModel.LastName = $("[id*=txtLastName]").val();
-        locationModel.ID_Number = $("[id*=txtID_Number]").val();
-        locationModel.DateOfBirth = $("[id*=txtDateOfBirth]").val();
-        locationModel.Gender
+        var FirstName = $('#FirstName').val();
+        var LastName = $('#LastName').val();
+        var IDNumber = $('#IDNumber').val();
+        var DateOfBirth = $('#DateOfBirth').val();
+        var dllGetGender = $('#dllGetGender').val();
+        var PhoneNumber = $('#PhoneNumber').val();
+        var Email = $('#Email').val();
+        var dllGetEmailtype = $('#dllGetEmailtype').val();
+        var Line1 = $('#Line1').val();
+        var Line2 = $('#Line2').val();
+        var dllGetCountries = $('#dllGetCountries').val();
+        var dllGetProvinces = $('#dllGetProvinces').val();
+        var dllGetMeritalStatus = $('#dllGetMeritalStatus').val();
+        var MedicationList = $('#MedicationList').val();
+        var EmergencyName = $('#EmergencyName').val();
+        var Relationship = $('#Relationship').val();
+        var PrimaryCarrierName = $('#PrimaryCarrierName').val();
+        var FPolicyHolderPhoneNumber = $('#FPolicyHolderPhoneNumber').val();
+        var FPolicyHolderName = $('#FPolicyHolderName').val();
+        var FPolicyHolderDateOfBirth = $('#FPolicyHolderDateOfBirth').val();
+        var FPolicyHolderRelationship = $('#FPolicyHolderRelationship').val();
+        var FPolicyHolderGenderIDFK = $('#FPolicyHolderGenderIDFK').val();
+        var SecondaryCarrierName = $('#SecondaryCarrierName').val();
+        var SPolicyHolderPhoneNumber = $('#SPolicyHolderPhoneNumber').val();
+        var SPolicyHolderName = $('#SPolicyHolderName').val();
+        var SPolicyHolderDateOfBirth = $('#SPolicyHolderDateOfBirth').val();
+        var SPolicyHolderRelationship = $('#SPolicyHolderRelationship').val();
+        var SPolicyHolderGenderIDFK = $('#SPolicyHolderGenderIDFK').val();
+        if (IDNumber == '') {
+            alert(" not successful");
+            /*$('#response').html('<span class="text-danger">Id Field is required</span>');*/
+        }
+        else
+        {
+            debugger
+            $.ajax({
+                url: "/Home/SavePatient",
+                type: "POST",
+                data: $("#frmHome").serialize(),
+                async: false,
+                success: function (data)
+                {
 
-        $.ajax({
-            url: "/Home/SavePatient",
-            type: "POST",
-            data: $("#frmHome").serialize(),//serialize means to publish
-            async: false,
-            error: function (xhr, status, error)
-            {
-                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-            },
-            success: function (Record)
-            {
-                
-            }
-        })
-        //alert("i clicked this");
-    //}
+                    alert("was successful" );
+                },
+                error: function (xhr, status, error) {
+                    alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+                }
+
+
+            })
+            /*alert("successful");*/
+        }
+        /*alert("successful");*/
+        
+    }
 </script>
