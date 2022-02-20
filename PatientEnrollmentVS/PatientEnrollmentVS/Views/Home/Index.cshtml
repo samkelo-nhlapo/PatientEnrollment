@@ -35,7 +35,7 @@
                         Text = Model.GenderDescription, 
                         Selected = true
                     } 
-                }, "0", new { id = "dllGetGender", @Class = "select-block"})
+                }, "0", new { id = "dllGetGender", @Class = "select-block", name = "Gender"})
     </div>
 
 
@@ -50,7 +50,7 @@
                         Text = Model.PhoneTypeDescription,
                         Selected = true
                     }
-                },"0", new { id = "dllGetPhoneType", @class = "select-block"})
+                },"0", new { id = "dllGetPhoneType", @class = "select-block", name = "PhoneType" })
 
     </div>
 
@@ -65,7 +65,7 @@
                         Text = Model.EmailTypeDescription,
                         Selected = true
                     }
-                }, "0", new { id = "dllGetEmailtype", @class = "select-block" })
+                }, "0", new { id = "dllGetEmailtype", @class = "select-block", name = "EmailType" })
 
 
     </div>
@@ -89,7 +89,7 @@
                     Text = Model.CountryName,
                     Selected = true
                 }
-            }, "0", new { id = "dllGetCountries", @class = "select-block" })
+            }, "0", new { id = "dllGetCountries", @class = "select-block", name = "Countries" })
 
     </div>
 
@@ -102,7 +102,7 @@
                     Text = Model.ProvinceName,
                     Selected = true
                 }
-            }, "0", new { id = "dllGetProvinces", @class = "select-block" })
+            }, "0", new { id = "dllGetProvinces", @class = "select-block", name = "Provinces" })
     </div>
 
     @*<div class="row">
@@ -127,7 +127,7 @@
                     Text = Model.MaritalStatusDescription,
                     Selected = true
                 }
-            }, "0", new { id = "dllGetMeritalStatus", @class = "select-block" })
+            }, "0", new { id = "dllGetMeritalStatus", @class = "select-block", name = "MeritalStatus" })
     </div>
 
     <div class="row">
@@ -382,22 +382,22 @@
         else
         {
             debugger
-            //$.ajax({
-            //    url: "/Home/SavePatient",
-            //    type: "POST",
-            //    data: $("#frmHome").serialize(),
-            //    async: false,
-            //    success: function (data)
-            //    {
+            $.ajax({
+                url: "/Home/SavePatient",
+                type: "POST",
+                data: $("#frmHome").serialize(),
+                async: false,
+                success: function (data)
+                {
 
-            //        alert("was successful" );
-            //    },
-            //    error: function (xhr, status, error) {
-            //        alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-            //    }
+                    alert("was successful" );
+                },
+                error: function (xhr, status, error) {
+                    alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+                }
 
 
-            //})
+            })
             /*alert("successful");*/
         }
         /*alert("successful");*/
