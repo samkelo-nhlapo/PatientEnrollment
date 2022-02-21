@@ -168,7 +168,7 @@
         @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block", id = "SPolicyHolderName" })
         <label>SPolicyHolderDateOfBirth</label>
         @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block", id = "SPolicyHolderDateOfBirth" })
-    <label>SPolicyHolderRelationship</label>
+        <label>SPolicyHolderRelationship</label>
         @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block", id = "SPolicyHolderRelationship" })
         <label>SPolicyHolderGenderIDFK</label>
         @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" , id = "SPolicyHolderGenderIDFK" })
@@ -376,31 +376,32 @@
         var SPolicyHolderDateOfBirth = $('#SPolicyHolderDateOfBirth').val();
         var SPolicyHolderRelationship = $('#SPolicyHolderRelationship').val();
         var SPolicyHolderGenderIDFK = $('#SPolicyHolderGenderIDFK').val();
-        if (IDNumber == '') {
-            alert(" not successful");
-            /*$('#response').html('<span class="text-danger">Id Field is required</span>');*/
-        }
-        else
-        {
-            debugger
-            $.ajax({
-                url: "/Home/SavePatient",
-                type: "POST",
-                data: $("#frmHome").serialize(),
-                async: false,
-                success: function (data)
-                {
+        //if (IDNumber == '') {
+        //    alert(" not successful");
+        //    /*$('#response').html('<span class="text-danger">Id Field is required</span>');*/
+        //}
+        //else
+        //{
+        debugger
+        $.ajax({
+            url: '/Home/SavePatient',
+            type: 'POST',
+            data: $('#frmHome').serialize(),
+            async: false,
+            dataType: "json",
+            success: function (data)
+            {
 
-                    alert("was successful" );
-                },
-                error: function (xhr, status, error) {
-                    alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-                }
+                alert("was successful" );
+            },
+            error: function (xhr, status, error) {
+                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
+            }
 
 
-            })
+        })
             /*alert("successful");*/
-        }
+        //}
         /*alert("successful");*/
         
     }
