@@ -54,14 +54,14 @@ namespace PatientEnrollmentVS.Controllers
         }
 
         //city Method
-        //public JsonResult GetCities()
-        //{
-        //    using (var db = GetContxt())
-        //    {
-        //        var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
-        //        return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        //    }
-        //}
+        public JsonResult GetCities()
+        {
+            using (var db = GetContxt())
+            {
+                var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
+                return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
 
         //MaritalStatus Method
         public JsonResult GetMeritalStatus()
@@ -101,7 +101,7 @@ namespace PatientEnrollmentVS.Controllers
         }
 
         [HttpPost]
-        public JsonResult SavePatient(LocationModel locationModel)
+        public JsonResult AddPatient(LocationModel locationModel)
         {
             string connection = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
 
@@ -114,16 +114,17 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@LastName", locationModel.LastName));
                 cmd.Parameters.Add(new SqlParameter("@IDNumber", locationModel.ID_Number));
                 cmd.Parameters.Add(new SqlParameter("@DateOfBirth", locationModel.DateOfBirth));
+                cmd.Parameters.Add(new SqlParameter("@GenderIDFK", locationModel.GenderId));
                 cmd.Parameters.Add(new SqlParameter("@PhoneNumber", locationModel.PhoneNumber));
-                cmd.Parameters.Add(new SqlParameter("@PhoneTypeIDFK", Int32.Parse(locationModel.PhoneTypeIDFK)));
+                cmd.Parameters.Add(new SqlParameter("@PhoneTypeIDFK", Int32.Parse(locationModel.PhoneTypeId)));
                 cmd.Parameters.Add(new SqlParameter("@Email", locationModel.Email));
-                cmd.Parameters.Add(new SqlParameter("@EmailTypeIDFK", Int32.Parse(locationModel.EmailTypeIDFK)));
+                cmd.Parameters.Add(new SqlParameter("@EmailTypeIDFK", Int32.Parse(locationModel.EmailTypeId)));
                 cmd.Parameters.Add(new SqlParameter("@Line1", locationModel.Line1));
                 cmd.Parameters.Add(new SqlParameter("@Line2", locationModel.Line2));
-                cmd.Parameters.Add(new SqlParameter("@CityIDFK", Int32.Parse(locationModel.CityIDFK)));
+                cmd.Parameters.Add(new SqlParameter("@CityIDFK", Int32.Parse(locationModel.CityId)));
                 cmd.Parameters.Add(new SqlParameter("@ProvinceIDFK", Int32.Parse(locationModel.ProvinceIDFK)));
-                cmd.Parameters.Add(new SqlParameter("@CountryIDFK", Int32.Parse(locationModel.CountryIDFK)));
-                cmd.Parameters.Add(new SqlParameter("@MaritalStatusIDFK", Int32.Parse(locationModel.MaritalStatusIDFK)));
+                cmd.Parameters.Add(new SqlParameter("@CountryIDFK", Int32.Parse(locationModel.CountryId)));
+                cmd.Parameters.Add(new SqlParameter("@MaritalStatusIDFK", Int32.Parse(locationModel.MaritalStatusId)));
                 cmd.Parameters.Add(new SqlParameter("@MedicationList", locationModel.MedicationList));
                 cmd.Parameters.Add(new SqlParameter("@EmergencyName", locationModel.EmergencyName));
                 cmd.Parameters.Add(new SqlParameter("@EmergencyLastName", locationModel.EmergencyLastName));

@@ -18,31 +18,31 @@
 
     <div class="row">
         <label>ID Number</label>
-        @Html.TextBoxFor(x => x.ID_Number, new {@class = "select-block", id = "IDNumber"})
+        @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "IDNumber" })
     </div>
-    
+
     <div class="row">
         <label>DateOfBirth</label>
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block" , id = "DateOfBirth"})
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth" })
     </div>
 
     <div class="row">
         <label>Gender</label>
         @Html.DropDownListFor(x => x.GenderId, new List<SelectListItem>()
                 { new SelectListItem()
-                    { 
-                        Value = Model.GenderId, 
-                        Text = Model.GenderDescription, 
+                    {
+                        Value = Model.GenderId,
+                        Text = Model.GenderDescription,
                         Selected = true
-                    } 
-                }, "0", new { id = "dllGetGender", @Class = "select-block", name = "Gender"})
+                    }
+                }, "0", new { id = "dllGetGender", @Class = "select-block", name = "Gender" })
     </div>
 
 
     <div class="row">
         <label>PhoneNumber</label>
         @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "PhoneNumber" })
-        
+
         @Html.DropDownListFor(x => x.PhoneTypeId, new List<SelectListItem>()
                 { new SelectListItem()
                     {
@@ -50,13 +50,13 @@
                         Text = Model.PhoneTypeDescription,
                         Selected = true
                     }
-                },"0", new { id = "dllGetPhoneType", @class = "select-block", name = "PhoneType" })
+                }, "0", new { id = "dllGetPhoneType", @class = "select-block", name = "PhoneType" })
 
     </div>
 
     <div class="row">
         <label>Email</label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "select-block" , id = "Email"})
+        @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "Email" })
 
         @Html.DropDownListFor(x => x.EmailTypeId, new List<SelectListItem>()
                 { new SelectListItem()
@@ -77,7 +77,32 @@
 
     <div class="row">
         <label>Line2</label>
-        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block" , id = "Line2"})
+        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "Line2" })
+    </div>
+
+    <div class="row">
+        <label>Cities</label>
+        @Html.DropDownListFor(x => x.CityId, new List<SelectListItem>()
+            { new SelectListItem()
+                {
+                    Value = Model.CityId,
+                    Text = Model.CityName,
+                    Selected = true
+                }
+            }, "0", new { id = "dllGetCities", @class = "select-block" ,  name = "Cities" })
+    </div>
+
+
+    <div class="row">
+        <label>Provinces</label>
+        @Html.DropDownListFor(x => x.ProvinceId, new List<SelectListItem>()
+            { new SelectListItem()
+                {
+                    Value = Model.ProvinceId,
+                    Text = Model.ProvinceName,
+                    Selected = true
+                }
+            }, "0", new { id = "dllGetProvinces", @class = "select-block", name = "Provinces" })
     </div>
 
     <div class="row">
@@ -93,30 +118,6 @@
 
     </div>
 
-    <div class="row">
-        <label>Provinces</label>
-        @Html.DropDownListFor(x => x.ProvinceId, new List<SelectListItem>()
-            { new SelectListItem()
-                {
-                    Value = Model.ProvinceId,
-                    Text = Model.ProvinceName,
-                    Selected = true
-                }
-            }, "0", new { id = "dllGetProvinces", @class = "select-block", name = "Provinces" })
-    </div>
-
-    @*<div class="row">
-        <label>Cities</label>
-        @Html.DropDownListFor(x => x.CityId, new List<SelectListItem>()
-            { new SelectListItem()
-                {
-                    Value = Model.CityId,
-                    Text = Model.CityName,
-                    Selected = true
-                }
-            }, "0", new { id = "dllGetCities", @class = "select-block" })
-    </div>*@
-    
 
     <div class="row">
         <label>Merital Status</label>
@@ -132,19 +133,19 @@
 
     <div class="row">
         <label>MedicationList</label>
-        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block" , id = "MedicationList"})
+        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "MedicationList" })
     </div>
 
     <div class="row">
         <label>EmergencyName</label>
-        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block" , id = "EmergencyName"})
+        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "EmergencyName" })
         <label>Relationship</label>
-        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block" , id = "Relationship"})
+        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "Relationship" })
     </div>
 
     <div class="row">
         <label>PrimaryCarrierName</label>
-        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block" , id = "PrimaryCarrierName" })
+        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block", id = "PrimaryCarrierName" })
         <label>FPolicyHolderPhoneNumber</label>
         @Html.TextBoxFor(x => x.FPolicyHolderPhoneNumber, new { @class = "select-block", id = "FPolicyHolderPhoneNumber" })
         <label>FPolicyHolderName</label>
@@ -152,7 +153,7 @@
         <label>FPolicyHolderDateOfBirth</label>
         @Html.TextBoxFor(x => x.FPolicyHolderDateOfBirth, new { @class = "select-block", id = "FPolicyHolderDateOfBirth" })
         <label>FPolicyHolderRelationship</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block" , id = "FPolicyHolderRelationship" })
+        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block", id = "FPolicyHolderRelationship" })
         <label>FPolicyHolderGenderIDFK</label>
         @Html.TextBoxFor(x => x.FPolicyHolderGenderIDFK, new { @class = "select-block", id = "FPolicyHolderGenderIDFK" })
     </div>
@@ -162,8 +163,8 @@
         @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block", id = "SecondaryCarrierName" })
 
         <label>SPolicyHolderPhoneNumber</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block" , id = "SPolicyHolderPhoneNumber" })
-    
+        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block", id = "SPolicyHolderPhoneNumber" })
+
         <label>SPolicyHolderName</label>
         @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block", id = "SPolicyHolderName" })
         <label>SPolicyHolderDateOfBirth</label>
@@ -171,12 +172,11 @@
         <label>SPolicyHolderRelationship</label>
         @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block", id = "SPolicyHolderRelationship" })
         <label>SPolicyHolderGenderIDFK</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block" , id = "SPolicyHolderGenderIDFK" })
+        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block", id = "SPolicyHolderGenderIDFK" })
     </div>
 
-    <div class="row">
-        <input type="button" value="Save Event" class="btn btn-primary" onclick="SaveButton()" />
-    </div>
+    @*<input type="button" value="Save Event" class="btn btn-primary" onclick="SaveButton()" />*@
+    <input id="btnSubmit" type="button" value="Submit" />
 }
 
 <script type="text/javascript">
@@ -222,30 +222,31 @@
             }
         })
 
-        //debugger
-        //$.ajax({
-        //    url: "/Home/GetCities",
-        //    dataType: "json",
-        //    cache: true,
-        //    async: true,
-        //    global: false,
-        //    success: function (data) {
+        debugger
+        $.ajax({
+            url: "/Home/GetCities",
+            dataType: "json",
+            cache: true,
+            async: true,
+            global: false,
+            success: function (data)
+            {
 
-        //        alert("cities successfull");
-        //        //var items = "<option value ='" + "0" + "'>" + "Select City" + "</option>";
-
-        //        //$.each(data, function (i, value)
-        //        //{
-        //        //    items += "<option value ='" + value.CityId + "'>" + value.CityName + "</option>";
-
-        //        //    $('#dllGetCities').html(items);
-        //        //})
-        //    },
-        //    error: function (xhr)
-        //    {
-        //        alert("Not successfull cities");
-        //    }
-        //})
+                alert("cities successfull");
+                //var items = "<option value ='" + "0" + "'>" + "Select City" + "</option>";
+                //
+                //$.each(data, function (i, value)
+                //{
+                //    items += "<option value ='" + value.CityId + "'>" + value.CityName + "</option>";
+                //
+                //    $('#dllGetCities').html(items);
+                //})
+            },
+            error: function (xhr)
+            {
+                alert("Not successfull cities");
+            }
+        })
 
 
         $.ajax({
@@ -276,18 +277,15 @@
             cache: true,
             async: true,
             global: false,
-            success: function (data)
-            {
+            success: function (data) {
                 var items = "<option value ='" + "0" + "'>" + "Select PhoneType" + "</option>";
-                $.each(data, function (i, value)
-                {
+                $.each(data, function (i, value) {
                     items += "<option value ='" + value.PhoneTypeId + "'>" + value.PhoneTypeDescription + "</option>";
                     $('#dllGetPhoneType').html(items);
                 })
 
             },
-            error: function (xhr)
-            {
+            error: function (xhr) {
                 alert("Phone type not successfull");
             }
         })
@@ -299,20 +297,17 @@
             cache: true,
             async: true,
             global: false,
-            success: function (data)
-            {
+            success: function (data) {
                 var items = "<option value ='" + "0" + "'>" + "Select EmailType" + "</option>";
 
-                $.each(data, function (i, value)
-                {
+                $.each(data, function (i, value) {
                     items += "<option value ='" + value.EmailTypeId + "'>" + value.EmailTypeDescription + "</option>";
 
                     $('#dllGetEmailtype').html(items);
                 })
 
             },
-            error: function (xhr)
-            {
+            error: function (xhr) {
                 alert("emailType not successful");
             }
         })
@@ -323,20 +318,17 @@
             cache: true,
             async: true,
             global: false,
-            success: function (data)
-            {
+            success: function (data) {
                 var items = "<option value ='" + "0" + "'>" + "Select Gender" + "</option>";
 
-                $.each(data, function (i, value)
-                {
+                $.each(data, function (i, value) {
                     items += "<option value ='" + value.GenderId + "'>" + value.GenderDescription + "</option>";
 
                     $('#dllGetGender').html(items);
                 })
 
             },
-            error: function (xhr)
-            {
+            error: function (xhr) {
                 alert("Gender not successful");
             }
         })
@@ -344,65 +336,23 @@
 </script>
 <script>
 
-    
-    function SaveButton()
-    {
-        var FirstName = $('#FirstName').val();
-        var LastName = $('#LastName').val();
-        var IDNumber = $('#IDNumber').val();
-        var DateOfBirth = $('#DateOfBirth').val();
-        var dllGetGender = $('#dllGetGender').change($("#dllGetGender option:selected")).val();
-        var PhoneNumber = $('#PhoneNumber').val();
-        var GetPhoneType = $('#dllGetPhoneType').change($("#dllGetPhoneType option:selected")).val();
-        var Email = $('#Email').val();
-        var dllGetEmailtype = $('#dllGetEmailtype').change($("#dllGetEmailtype option:selected")).val();
-        var Line1 = $('#Line1').val();
-        var Line2 = $('#Line2').val();
-        var dllGetCountries = $('#dllGetCountries').change($("#dllGetCountries option:selected")).val();
-        var dllGetProvinces = $('#dllGetProvinces').change($("#dllGetProvinces option:selected")).val();
-        var dllGetMeritalStatus = $('#dllGetMeritalStatus').change($("#dllGetMeritalStatus option:selected")).val();
-        var MedicationList = $('#MedicationList').val();
-        var EmergencyName = $('#EmergencyName').val();
-        var Relationship = $('#Relationship').val();
-        var PrimaryCarrierName = $('#PrimaryCarrierName').val();
-        var FPolicyHolderPhoneNumber = $('#FPolicyHolderPhoneNumber').val();
-        var FPolicyHolderName = $('#FPolicyHolderName').val();
-        var FPolicyHolderDateOfBirth = $('#FPolicyHolderDateOfBirth').val();
-        var FPolicyHolderRelationship = $('#FPolicyHolderRelationship').val();
-        var FPolicyHolderGenderIDFK = $('#FPolicyHolderGenderIDFK').val();
-        var SecondaryCarrierName = $('#SecondaryCarrierName').val();
-        var SPolicyHolderPhoneNumber = $('#SPolicyHolderPhoneNumber').val();
-        var SPolicyHolderName = $('#SPolicyHolderName').val();
-        var SPolicyHolderDateOfBirth = $('#SPolicyHolderDateOfBirth').val();
-        var SPolicyHolderRelationship = $('#SPolicyHolderRelationship').val();
-        var SPolicyHolderGenderIDFK = $('#SPolicyHolderGenderIDFK').val();
-        //if (IDNumber == '') {
-        //    alert(" not successful");
-        //    /*$('#response').html('<span class="text-danger">Id Field is required</span>');*/
-        //}
-        //else
-        //{
-        debugger
-        $.ajax({
-            url: '/Home/SavePatient',
-            type: 'POST',
-            data: $('#frmHome').serialize(),
-            async: false,
-            dataType: "json",
-            success: function (data)
-            {
 
-                alert("was successful" );
-            },
-            error: function (xhr, status, error) {
-                alert("was not successful xhr: " + xhr.value + " status: " + status.value + " error: " + error.value);
-            }
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            $.ajax
+                ({
+                    url: "/Home/AddPatient",
+                    type: "POST",
+                    dataType: 'json',
+                    data: $("#fromHome").serialize(),
+                    success: function (data) {
+                        alert("successful");
+                    },
+                    error: function (xhr, status, error) {
+                        alert("not successful: " + xhr.value + status.value + error.value);
+                    }
 
-
-        })
-            /*alert("successful");*/
-        //}
-        /*alert("successful");*/
-        
-    }
+                });
+        });
+    });
 </script>
