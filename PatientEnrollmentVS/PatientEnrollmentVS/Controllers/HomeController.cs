@@ -54,16 +54,35 @@ namespace PatientEnrollmentVS.Controllers
         }
 
         //city Method
-        public JsonResult GetCities()
+        //[HttpPost]
+        //public JsonResult GetCities()
+        //{
+        //    using (var db = GetContxt())
+        //    {
+        //        var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
+        //        return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //    }
+        //}
+        [HttpPost]
+        public JsonResult GetCities(string prefix)
         {
             using (var db = GetContxt())
             {
                 var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
-                return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
-        }
 
-        //MaritalStatus Method
+                var city = (from cities in eventCities
+                            where cities.CityName.StartsWith(prefix)
+                            select new
+                            {
+                                label = cities.CityName,
+                                val = cities.CityId
+                            }).ToList();
+
+                return Json(city);
+            }
+
+        }
+            //MaritalStatus Method
         public JsonResult GetMeritalStatus()
         {
             using(var db = GetContxt())
