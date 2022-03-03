@@ -190,11 +190,14 @@
 }
 
 <script type="text/javascript">
-    var jj = jQuery.noConflict();
 
-    $jj(function () {
+    var $j = jQuery.noConflict();
+
+    
+    $j(document).ready(function () {
+
         debugger
-        $jj("#txtCities").autocomplete({
+        $j("#txtCities").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetCities",
@@ -218,30 +221,30 @@
             }
         })
     })
-
     $(document).ready(function () {
         $.ajax(
-            {
-                url: "/Home/GetCountries",
-                dataType: "json",
-                cache: true,
-                async: true,
-                global: false,
-                success: function (data) {
-                    var items = "<option value ='" + "0" + "'>" + "Select Country" + "</option>";
+        {
+            url: "/Home/GetCountries",
+            dataType: "json",
+            cache: true,
+            async: true,
+            global: false,
+            success: function (data) {
+                var items = "<option value ='" + "0" + "'>" + "Select Country" + "</option>";
 
-                    $.each(data, function (i, value) {
-                        items += "<option value ='" + value.CountryId + "'>" + value.CountryName + "</option>";
+                $.each(data, function (i, value) {
+                    items += "<option value ='" + value.CountryId + "'>" + value.CountryName + "</option>";
 
-                        $('#dllGetCountries').html(items);
-                    })
-                },
-                error: function () {
-                    alert("not successful");
-                }
-            })
+                    $('#dllGetCountries').html(items);
+                })
+            },
+            error: function () {
+                alert("not successful");
+            }
+        })
 
-        $.ajax({
+        $.ajax
+        ({
             url: "/Home/GetProvinces",
             dataType: "json",
             cache: true,
@@ -287,7 +290,8 @@
 
 
 
-        $.ajax({
+        $.ajax
+        ({
             url: "/Home/GetMeritalStatus",
             dataType: "json",
             cache: true,
