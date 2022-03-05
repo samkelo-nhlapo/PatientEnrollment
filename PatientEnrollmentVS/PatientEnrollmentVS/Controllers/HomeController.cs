@@ -34,12 +34,22 @@ namespace PatientEnrollmentVS.Controllers
         }
 
         //Country Method
-        public JsonResult GetCountries()
+        [HttpPost]
+        public JsonResult GetCountries(string prefix = "")
         {
             using(var db = GetContxt())
             {
                 var eventCountries = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCountries")).ToList();
-                return new JsonResult { Data = eventCountries, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                
+                var country = (from countries in eventCountries
+                                 where countries.CountryName.StartsWith(prefix)
+                                 select new
+                                 {
+                                     label = countries.CountryName,
+                                     val = countries.CountryId
+                                 }).ToList();
+
+                return Json(country);
             }
         }
 
@@ -53,18 +63,8 @@ namespace PatientEnrollmentVS.Controllers
             }
         }
 
-        //city Method
-        //[HttpPost]
-        //public JsonResult GetCities()
-        //{
-        //    using (var db = GetContxt())
-        //    {
-        //        var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
-        //        return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        //    }
-        //}
         [HttpPost]
-        public JsonResult GetCities(string prefix)
+        public JsonResult GetCities(string prefix = "")
         {
             using (var db = GetContxt())
             {
@@ -82,7 +82,8 @@ namespace PatientEnrollmentVS.Controllers
             }
 
         }
-            //MaritalStatus Method
+
+        //MaritalStatus Method
         public JsonResult GetMeritalStatus()
         {
             using(var db = GetContxt())
@@ -141,7 +142,7 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@Line1", locationModel.Line1));
                 cmd.Parameters.Add(new SqlParameter("@Line2", locationModel.Line2));
                 cmd.Parameters.Add(new SqlParameter("@CityIDFK", Int32.Parse(locationModel.CityId)));
-                cmd.Parameters.Add(new SqlParameter("@ProvinceIDFK", Int32.Parse(locationModel.ProvinceIDFK)));
+                cmd.Parameters.Add(new SqlParameter("@ProvinceIDFK", Int32.Parse(locationModel.ProvinceId)));
                 cmd.Parameters.Add(new SqlParameter("@CountryIDFK", Int32.Parse(locationModel.CountryId)));
                 cmd.Parameters.Add(new SqlParameter("@MaritalStatusIDFK", Int32.Parse(locationModel.MaritalStatusId)));
                 cmd.Parameters.Add(new SqlParameter("@MedicationList", locationModel.MedicationList));
