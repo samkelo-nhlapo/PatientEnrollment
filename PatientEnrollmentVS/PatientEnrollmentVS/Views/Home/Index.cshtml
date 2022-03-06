@@ -17,6 +17,7 @@
 {<div class="row">
         <label>First Name</label>
         @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName" })
+        
         <label>Last Name</label>
         @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName" })
     </div>
@@ -28,7 +29,7 @@
 
     <div class="row">
         <label>DateOfBirth</label>
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth" })
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth", type="text", value="dd/MM/yyyy" })
     </div>
 
     @Html.AntiForgeryToken()
@@ -346,7 +347,7 @@
             url: "/Home/AddPatient",
             data: $("#fromHome").serialize(),
             dataType: "json",
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            /*contentType: 'application/x-www-form-urlencoded; charset=UTF-8',*/
             success: function (data) {
                 alert("successfully saved ");
             },

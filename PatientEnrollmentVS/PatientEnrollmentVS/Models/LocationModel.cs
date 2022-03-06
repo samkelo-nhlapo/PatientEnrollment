@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace PatientEnrollmentVS.Models
 {
@@ -39,7 +40,9 @@ namespace PatientEnrollmentVS.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ID_Number { get; set; }
-        public string DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}", ApplyFormatInEditMode =true)]
+        public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Line1 { get; set; }
