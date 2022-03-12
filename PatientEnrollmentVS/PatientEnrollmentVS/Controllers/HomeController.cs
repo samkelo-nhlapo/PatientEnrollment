@@ -35,21 +35,20 @@ namespace PatientEnrollmentVS.Controllers
 
         //Country Method
         [HttpPost]
-        public JsonResult GetCountries(string prefix = "")
+        public JsonResult GetCountries(string Prefix)
         {
             using(var db = GetContxt())
             {
                 var eventCountries = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCountries")).ToList();
                 
                 var country = (from countries in eventCountries
-                                 where countries.CountryName.StartsWith(prefix)
+                                 where countries.CountryName.StartsWith(Prefix)
                                  select new
                                  {
-                                     label = countries.CountryName,
-                                     val = countries.CountryId
-                                 }).ToList();
+                                     countries.CountryName
+                                 });
 
-                return Json(country);
+                return Json(country, JsonRequestBehavior.AllowGet );
             }
         }
 
@@ -64,21 +63,20 @@ namespace PatientEnrollmentVS.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetCities(string prefix = "")
+        public JsonResult GetCities(string Prefix )
         {
             using (var db = GetContxt())
             {
                 var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
 
                 var city = (from cities in eventCities
-                            where cities.CityName.StartsWith(prefix)
+                            where cities.CityName.StartsWith(Prefix)
                             select new
                             {
-                                label = cities.CityName,
-                                val = cities.CityId
-                            }).ToList();
+                                cities.CityName
+                            });
 
-                return Json(city);
+                return Json(city, JsonRequestBehavior.AllowGet);
             }
 
         }

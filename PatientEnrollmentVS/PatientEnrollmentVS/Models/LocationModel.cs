@@ -41,7 +41,7 @@ namespace PatientEnrollmentVS.Models
         public string LastName { get; set; }
         public string ID_Number { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}", ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
@@ -51,20 +51,28 @@ namespace PatientEnrollmentVS.Models
         public string EmergencyName { get; set; }
         public string EmergencyLastName { get; set; }
         public string Relationship { get; set; }
-        public string RelationshipDateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime RelationshipDateOfBirth { get; set; }
         public string PrimaryCarrierName { get; set; }
         public string FPolicyHolderPhoneNumber { get; set; }
         public string FPolicyHolderName { get; set; }
-        public string FPolicyHolderDateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime FPolicyHolderDateOfBirth { get; set; }
         public string FPolicyHolderRelationship { get; set; }
         public string FPolicyHolderGenderIDFK { get; set; }
         public string SecondaryCarrierName { get; set; }
         public string SPolicyHolderPhoneNumber { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public string SPolicyHolderName { get; set; }
-        public string SPolicyHolderDateOfBirth { get; set; }
+        public DateTime SPolicyHolderDateOfBirth { get; set; }
         public string SPolicyHolderRelationship { get; set; }
         public string SPolicyHolderGenderIDFK { get; set; }
         public string Message { get; set; }
 
     }
 }
+//[DataType(DataType.Date)]
+//[DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}", ApplyFormatInEditMode =true)]

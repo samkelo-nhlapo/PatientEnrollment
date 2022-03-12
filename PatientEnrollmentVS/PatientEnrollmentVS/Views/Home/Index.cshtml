@@ -14,10 +14,13 @@
 <script type="text/javascript">var $j = $.noConflict(true)</script>
 
 @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
-{<div class="row">
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
         <label>First Name</label>
         @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName" })
-        
+
         <label>Last Name</label>
         @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName" })
     </div>
@@ -29,10 +32,10 @@
 
     <div class="row">
         <label>DateOfBirth</label>
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth", type="text", value="dd/MM/yyyy" })
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth" })
     </div>
 
-    @Html.AntiForgeryToken()
+
     <div class="row">
 
         <label>Gender</label>
@@ -87,12 +90,9 @@
         @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "Line2" })
     </div>
 
-    <div class="form-group">
-        <div class="row">
-            <label>Cities</label>
-            <input type="text" id="txtCities" name="CityName" />
-            <input type="hidden" id="hfCities" name="CityId" />
-        </div>
+    <div class="row">
+        <label>Cities</label>
+        @Html.EditorFor(x => x.CityId, new { htmlAttributes = new { @class = "select-block", @id = "Cities" } })
     </div>
 
     <div class="row">
@@ -107,14 +107,10 @@
             }, "0", new { id = "dllGetProvinces", @class = "select-block", name = "Provinces" })
     </div>
 
-    <div class="form-group">
-        <div class="row">
-            <label>Countries</label>
-            <input type="text" id="txtCountries" name="CountryName" onkeyup="this.value = this.value.toUpperCase();" />
-            <input type="hidden" id="hfCountries" name="CountryId" />
-        </div>
+    <div class="row">
+        <label>Countries</label>
+        @Html.EditorFor(x => x.CountryId, new { htmlAttributes = new { @class = "select-block", @id = "Countries" } })
     </div>
-
 
     <div class="row">
         <label>Merital Status</label>
@@ -138,6 +134,8 @@
         @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "EmergencyName" })
         <label>Relationship</label>
         @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "Relationship" })
+        <label>His/Her Date Or birth</label>
+        @Html.TextBoxFor(x => x.RelationshipDateOfBirth, new { @class = "select-box", id = "RelationshipDateOfBirth" })
     </div>
 
     <div class="row">
@@ -173,7 +171,7 @@
     </div>
 
     <input type="button" value="Save Event" class="btn btn-primary" onclick="SaveButton()" />
-    @*<input id="btnSubmit" type="button" value="Submit" />*@
+
 }
 
 <script type="text/javascript">
@@ -239,20 +237,19 @@
         }
     })
 
-    
+
     $j(function () {
-        debugger
-        $j("#txtCities").autocomplete({
+        
+        $j("#Cities").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetCities",
                     type: "POST",
                     dataType: "json",
-                    data: "{'prefix': '" + request.term + "'}",
-                    contentType: "application/json; charset=utf-8",
+                    data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return item;
+                            return { label: item.CityId, value: item.CityName };
                         }))
                     },
                     error: function () {
@@ -261,10 +258,7 @@
                     }
                 })
             },
-            select: function (e, i) {
-
-                $("#hfCities").val(i.item.val);
-            }
+            messeges: { noResults: "", results: "" }
         })
     })
 
@@ -278,7 +272,7 @@
             async: true,
             global: false,
             success: function (data) {
-                var items = "<option value ='" + "0" + "'>" + "Select Country" + "</option>";
+                var items = "<option value ='" + "0" + "'>" + "Select Province" + "</option>";
 
                 $.each(data, function (i, value) {
                     items += "<option value ='" + value.ProvinceId + "'>" + value.ProvinceName + "</option>";
@@ -291,19 +285,18 @@
             }
         }
     )
-    
+
     $j(function () {
-        $j("#txtCountries").autocomplete({
+        $j("#Countries").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetCountries",
                     type: "POST",
                     dataType: "json",
-                    data: "{'prefix': '" + request.term + "'}",
-                    contentType: "application/json; charset=utf-8",
+                    data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return item;
+                            return { label: item.CountryId, value: item.CountryName };
                         }))
                     },
                     error: function () {
@@ -311,86 +304,51 @@
                     }
                 })
             },
-            select: function (e, i) {
-                $("#hfCountries").val(i.item.val);
-            }
+            messages: { noResults: "", results: "" }
+
         })
     })
     $j.ajax
-        (
-            {
-                url: "/Home/GetMeritalStatus",
-                dataType: "json",
-                cache: true,
-                async: true,
-                global: false,
-                success: function (data) {
+    (
+        {
+            url: "/Home/GetMeritalStatus",
+            dataType: "json",
+            cache: true,
+            async: true,
+            global: false,
+            success: function (data) {
 
-                    var items = "<option value ='" + "0" + "'>" + "Select Status" + "</option>";
+                var items = "<option value ='" + "0" + "'>" + "Select Status" + "</option>";
 
-                    $.each(data, function (i, value) {
-                        items += "<option value ='" + value.MaritalStatusId + "'>" + value.MaritalStatusDescription + "</option>";
+                $.each(data, function (i, value) {
+                    items += "<option value ='" + value.MaritalStatusId + "'>" + value.MaritalStatusDescription + "</option>";
 
-                        $('#dllGetMeritalStatus').html(items);
-                    })
-                },
-                error: function (xhr) {
-                    alert("not successfull ");
-                }
+                    $('#dllGetMeritalStatus').html(items);
+                })
+            },
+            error: function (xhr) {
+                alert("not successfull ");
             }
-        )
+        }
+    )
 </script>
 <script>
+
     function SaveButton() {
-        $.ajax({
+        $j.ajax({
             type: "POST",
             url: "/Home/AddPatient",
             data: $("#fromHome").serialize(),
             dataType: "json",
-            /*contentType: 'application/x-www-form-urlencoded; charset=UTF-8',*/
+            async: false,
             success: function (data) {
                 alert("successfully saved ");
             },
             error: function () {
                 alert("not successfully saved ");
             }
-
         })
     }
-    //$(document).ready(function () {
-    //    //$("#btnSubmit").click(function () {
-    //    //    $.ajax
-    //    //    ({
-    //    //        url: "/Home/AddPatient",
-    //    //        type: "POST",
-    //    //        dataType: 'json',
-    //    //        data: $("#fromHome").serialize(),
-    //    //        success: function (data)
-    //    //        {
-    //    //            alert("successful");
-    //    //        },
-    //    //        error: function (xhr, status, error) {
-    //    //            alert("not successful: " + xhr.value + status.value + error.value);
-    //    //        }
 
-    //    //    });
-    //    //});
 
-    //    //function SaveButton() {
-    //    //    $.ajax({
-    //    //        type: "POST",
-    //    //        url: "Home/AddPatient",
-    //    //        data: $("#fromHome").serialize(),
-    //    //        dataType: "json",
-    //    //        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-    //    //        success: function (data) {
-    //    //            alert("successfully saved ");
-    //    //        },
-    //    //        error: function () {
-    //    //            alert("not successfully saved ");
-    //    //        }
-
-    //    //    })
-    //    //}
-    //});
 </script>
