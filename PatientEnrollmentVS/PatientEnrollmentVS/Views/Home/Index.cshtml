@@ -17,22 +17,24 @@
 {
     @Html.AntiForgeryToken()
 
+    // (Html.TextBoxFor) are Html Helpers
+
     <div class="row">
         <label>First Name</label>
-        @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName" })
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName", name = "FirstName" })
 
         <label>Last Name</label>
-        @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName" })
+        @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName",  name = "LastName" })
     </div>
 
     <div class="row">
         <label>ID Number</label>
-        @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "IDNumber" })
+        @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "IDNumber",  name = "IDNumber" })
     </div>
 
     <div class="row">
         <label>DateOfBirth</label>
-        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth" })
+        @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", id = "DateOfBirth", name = "DateOfBirth" })
     </div>
 
 
@@ -52,8 +54,9 @@
 
     <div class="row">
         <label>PhoneNumber</label>
-        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "PhoneNumber" })
-
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "PhoneNumber", name = "PhoneNumber" })
+        
+        <label>Phone Type</label>
         @Html.DropDownListFor(x => x.PhoneTypeId, new List<SelectListItem>()
                 { new SelectListItem()
                     {
@@ -67,8 +70,9 @@
 
     <div class="row">
         <label>Email</label>
-        @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "Email" })
-
+        @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "Email",  name = "Email" })
+        
+        <label>Email Type</label>
         @Html.DropDownListFor(x => x.EmailTypeId, new List<SelectListItem>()
                 { new SelectListItem()
                     {
@@ -82,20 +86,20 @@
 
     <div class="row">
         <label>Line1</label>
-        @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "Line1" })
+        @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "Line1", name = "Line1" })
     </div>
 
     <div class="row">
         <label>Line2</label>
-        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "Line2" })
+        @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "Line2", name = "Line2" })
     </div>
 
     <div class="row">
         <label>Cities</label>
-        @Html.EditorFor(x => x.CityId, new { htmlAttributes = new { @class = "select-block", @id = "Cities" } })
+        @Html.TextBoxFor(x => x.CityId, new { @class = "select-block", @id = "dllGetCities",  name = "GetCities" })
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <label>Provinces</label>
         @Html.DropDownListFor(x => x.ProvinceId, new List<SelectListItem>()
             { new SelectListItem()
@@ -109,7 +113,7 @@
 
     <div class="row">
         <label>Countries</label>
-        @Html.EditorFor(x => x.CountryId, new { htmlAttributes = new { @class = "select-block", @id = "Countries" } })
+        @Html.EditorFor(x => x.CountryId, new { htmlAttributes = new { @class = "select-block", @id = "dllGetCountries" , name = "Countries"} })
     </div>
 
     <div class="row">
@@ -126,49 +130,47 @@
 
     <div class="row">
         <label>MedicationList</label>
-        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "MedicationList" })
+        @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "MedicationList",  name = "MedicationList" })
     </div>
 
     <div class="row">
         <label>EmergencyName</label>
-        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "EmergencyName" })
+        @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "EmergencyName", name = "EmergencyName" })
         <label>Relationship</label>
-        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "Relationship" })
+        @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "Relationship", name = "Relationship" })
         <label>His/Her Date Or birth</label>
-        @Html.TextBoxFor(x => x.RelationshipDateOfBirth, new { @class = "select-box", id = "RelationshipDateOfBirth" })
+        @Html.TextBoxFor(x => x.RelationshipDateOfBirth, new { @class = "select-box", id = "RelationshipDateOfBirth",  name = "RelationshipDateOfBirth" })
     </div>
 
     <div class="row">
         <label>PrimaryCarrierName</label>
-        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block", id = "PrimaryCarrierName" })
+        @Html.TextBoxFor(x => x.PrimaryCarrierName, new { @class = "select-block", id = "PrimaryCarrierName",  name = "PrimaryCarrierName" })
         <label>FPolicyHolderPhoneNumber</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderPhoneNumber, new { @class = "select-block", id = "FPolicyHolderPhoneNumber" })
+        @Html.TextBoxFor(x => x.FPolicyHolderPhoneNumber, new { @class = "select-block", id = "FPolicyHolderPhoneNumber", name = "FPolicyHolderPhoneNumber" })
         <label>FPolicyHolderName</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderName, new { @class = "select-block", id = "FPolicyHolderName" })
+        @Html.TextBoxFor(x => x.FPolicyHolderName, new { @class = "select-block", id = "FPolicyHolderName", name = "FPolicyHolderName" })
         <label>FPolicyHolderDateOfBirth</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderDateOfBirth, new { @class = "select-block", id = "FPolicyHolderDateOfBirth" })
+        @Html.TextBoxFor(x => x.FPolicyHolderDateOfBirth, new { @class = "select-block", id = "FPolicyHolderDateOfBirth",  name = "FPolicyHolderDateOfBirth" })
         <label>FPolicyHolderRelationship</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block", id = "FPolicyHolderRelationship" })
+        @Html.TextBoxFor(x => x.FPolicyHolderRelationship, new { @class = "select-block", id = "FPolicyHolderRelationship",  name = "FPolicyHolderRelationship" })
         <label>FPolicyHolderGenderIDFK</label>
-        @Html.TextBoxFor(x => x.FPolicyHolderGenderIDFK, new { @class = "select-block", id = "FPolicyHolderGenderIDFK" })
+        @Html.TextBoxFor(x => x.FPolicyHolderGenderIDFK, new { @class = "select-block", id = "FPolicyHolderGenderIDFK", name = "FPolicyHolderGenderIDFK" })
     </div>
     <div class="row">
 
         <label>SecondaryCarrierName</label>
-        @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block", id = "SecondaryCarrierName" })
-
+        @Html.TextBoxFor(x => x.SecondaryCarrierName, new { @class = "select-block", id = "SecondaryCarrierName", name = "SecondaryCarrierName" })
         <label>SPolicyHolderPhoneNumber</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block", id = "SPolicyHolderPhoneNumber" })
-
+        @Html.TextBoxFor(x => x.SPolicyHolderPhoneNumber, new { @class = "select-block", id = "SPolicyHolderPhoneNumber", name = "SPolicyHolderPhoneNumber" })
         <label>SPolicyHolderName</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block", id = "SPolicyHolderName" })
+        @Html.TextBoxFor(x => x.SPolicyHolderName, new { @class = "select-block", id = "SPolicyHolderName", name = "SPolicyHolderName" })
         <label>SPolicyHolderDateOfBirth</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block", id = "SPolicyHolderDateOfBirth" })
+        @Html.TextBoxFor(x => x.SPolicyHolderDateOfBirth, new { @class = "select-block", id = "SPolicyHolderDateOfBirth", name = "SPolicyHolderDateOfBirth" })
         <label>SPolicyHolderRelationship</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block", id = "SPolicyHolderRelationship" })
+        @Html.TextBoxFor(x => x.SPolicyHolderRelationship, new { @class = "select-block", id = "SPolicyHolderRelationship", name = "SPolicyHolderRelationship" })
         <label>SPolicyHolderGenderIDFK</label>
-        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block", id = "SPolicyHolderGenderIDFK" })
-    </div>
+        @Html.TextBoxFor(x => x.SPolicyHolderGenderIDFK, new { @class = "select-block", id = "SPolicyHolderGenderIDFK", name = "SPolicyHolderGenderIDFK" })
+    </div>*@
 
     <input type="button" value="Save Event" class="btn btn-primary" onclick="SaveButton()" />
 
@@ -239,8 +241,9 @@
 
 
     $j(function () {
-        
-        $j("#Cities").autocomplete({
+        debugger
+        $j("#dllGetCities").autocomplete({
+            autoFocus: true,
             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetCities",
@@ -249,7 +252,7 @@
                     data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.CityId, value: item.CityName };
+                            return { label: item.CityName, value: item.CityId };
                         }))
                     },
                     error: function () {
@@ -287,7 +290,7 @@
     )
 
     $j(function () {
-        $j("#Countries").autocomplete({
+        $j("#dllGetCountries").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/Home/GetCountries",
@@ -335,6 +338,7 @@
 <script>
 
     function SaveButton() {
+        debugger
         $j.ajax({
             type: "POST",
             url: "/Home/AddPatient",

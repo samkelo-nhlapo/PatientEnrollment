@@ -128,8 +128,8 @@ namespace PatientEnrollmentVS.Controllers
                 SqlCommand cmd = new SqlCommand("Profile.spAddPatientProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FirstName", locationModel.FirstName);
-                cmd.Parameters.AddWithValue("@LastName", locationModel.LastName);
+                cmd.Parameters.Add(new SqlParameter("@FirstName", locationModel.FirstName));
+                cmd.Parameters.Add(new SqlParameter("@LastName", locationModel.LastName));
                 cmd.Parameters.Add(new SqlParameter("@IDNumber", locationModel.ID_Number));
                 cmd.Parameters.Add(new SqlParameter("@DateOfBirth", locationModel.DateOfBirth));
                 cmd.Parameters.Add(new SqlParameter("@GenderIDFK", Int32.Parse(locationModel.GenderId)));

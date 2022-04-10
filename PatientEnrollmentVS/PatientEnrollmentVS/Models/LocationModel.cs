@@ -40,9 +40,9 @@ namespace PatientEnrollmentVS.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string ID_Number { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DateOfBirth { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public string DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Line1 { get; set; }
@@ -51,23 +51,23 @@ namespace PatientEnrollmentVS.Models
         public string EmergencyName { get; set; }
         public string EmergencyLastName { get; set; }
         public string Relationship { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime RelationshipDateOfBirth { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public string RelationshipDateOfBirth { get; set; }
         public string PrimaryCarrierName { get; set; }
         public string FPolicyHolderPhoneNumber { get; set; }
         public string FPolicyHolderName { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime FPolicyHolderDateOfBirth { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public string FPolicyHolderDateOfBirth { get; set; }
         public string FPolicyHolderRelationship { get; set; }
         public string FPolicyHolderGenderIDFK { get; set; }
         public string SecondaryCarrierName { get; set; }
         public string SPolicyHolderPhoneNumber { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public string SPolicyHolderName { get; set; }
-        public DateTime SPolicyHolderDateOfBirth { get; set; }
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public string SPolicyHolderDateOfBirth { get; set; }
         public string SPolicyHolderRelationship { get; set; }
         public string SPolicyHolderGenderIDFK { get; set; }
         public string Message { get; set; }
