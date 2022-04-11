@@ -67,14 +67,15 @@ namespace PatientEnrollmentVS.Controllers
         {
             using (var db = GetContxt())
             {
-                var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
+                var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities"));
 
                 var city = (from cities in eventCities
                             where cities.CityName.StartsWith(Prefix)
                             select new
                             {
-                                cities.CityName
-                            });
+                                label = cities.CityName,
+                                val = cities.CityId
+                            }).ToList();
 
                 return Json(city, JsonRequestBehavior.AllowGet);
             }

@@ -96,7 +96,9 @@
 
     <div class="row">
         <label>Cities</label>
-        @Html.TextBoxFor(x => x.CityId, new { @class = "select-block", @id = "dllGetCities",  name = "GetCities" })
+        @*@Html.TextBoxFor(x => x.CityId, new { @class = "select-block", @id = "dllGetCities",  name = "GetCities" })*@
+        <input type="text" id="dllGetCities" name="GetCities"/>
+        <input type="hidden" id="hfCity" name="hfGetCities" />
     </div>
 
     @*<div class="row">
@@ -252,16 +254,23 @@
                     data: { Prefix: request.term },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            return { label: item.CityName, value: item.CityId };
+                            /*return { label: item.CityName, value: item.CityId };*/
+                            return item;
                         }))
                     },
-                    error: function () {
+                    error: function (response) {
 
-                        alert("cities not successful");
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
                     }
                 })
             },
-            messeges: { noResults: "", results: "" }
+            select: function (e, i) {
+                $("#hfCity").val(i.item.val);
+            },
+            messeges: { noResults: "noResult", results: "result" }
         })
     })
 
@@ -348,8 +357,10 @@
             success: function (data) {
                 alert("successfully saved ");
             },
-            error: function () {
-                alert("not successfully saved ");
+            error: function (xhr, value, response) {
+                alert("not successfully saved xhr " + xhr.responseText);
+                alert(" value from value: " + value.responseText);
+                alert("Response from response: " + response.responseText);
             }
         })
     }
