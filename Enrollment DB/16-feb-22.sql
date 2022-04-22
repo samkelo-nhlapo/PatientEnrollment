@@ -2,12 +2,12 @@ USE [master]
 GO
 /****** Object:  Database [PatientEnrollment]    Script Date: 16-Feb-22 06:19:29 PM ******/
 CREATE DATABASE [PatientEnrollment]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'PatientEnrollment', FILENAME = N'/var/opt/mssql/data/PatientEnrollment.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'PatientEnrollment_log', FILENAME = N'/var/opt/mssql/data/PatientEnrollment_log.ldf' , SIZE = 139264KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT
+-- CONTAINMENT = NONE
+-- ON  PRIMARY 
+--( NAME = N'PatientEnrollment', FILENAME = N'/var/opt/mssql/data/PatientEnrollment.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+-- LOG ON 
+--( NAME = N'PatientEnrollment_log', FILENAME = N'/var/opt/mssql/data/PatientEnrollment_log.ldf' , SIZE = 139264KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+-- WITH CATALOG_COLLATION = DATABASE_DEFAULT
 GO
 ALTER DATABASE [PatientEnrollment] SET COMPATIBILITY_LEVEL = 150
 GO
@@ -154,7 +154,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Contacts].[EmergencyContacts](
 	[EmergencyId] [uniqueidentifier] NOT NULL,
-	[FirstName] [varchar](250) NOT NULL,
+	[FirstName/s] [varchar](250) NOT NULL,
 	[LastName] [varchar](250) NOT NULL,
 	[Relationship] [varchar](250) NOT NULL,
 	[DateOfBirth] [datetime] NOT NULL,
@@ -198,22 +198,6 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Insurance].[CarrierPhoneNumber]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Insurance].[CarrierPhoneNumber](
-	[CarrierPhoneNumberId] [uniqueidentifier] NOT NULL,
-	[CarrierPhoneNumber] [varchar](50) NOT NULL,
-	[IsActive] [bit] NOT NULL,
-	[UpdateDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[CarrierPhoneNumberId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 /****** Object:  Table [Insurance].[PrimaryCarrier]    Script Date: 16-Feb-22 06:19:29 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -222,11 +206,10 @@ GO
 CREATE TABLE [Insurance].[PrimaryCarrier](
 	[PrimaryCarrierId] [uniqueidentifier] NOT NULL,
 	[PrimaryCarrierName] [varchar](250) NOT NULL,
-	[PrimaryCarrierPhoneNumberIDFK] [uniqueidentifier] NOT NULL,
+	[PrimaryCarrierContactNumber] [varchar](250) NOT NULL,
 	[Primary_PH_Name] [varchar](250) NOT NULL,
 	[Primary_PH_DateOfBirth] [datetime] NOT NULL,
 	[Primary_PH_Relationship] [varchar](250) NOT NULL,
-	[Primary_PH_GenderIDFK] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[PrimaryCarrierId] ASC
@@ -241,7 +224,7 @@ GO
 CREATE TABLE [Insurance].[SecondaryCarrier](
 	[SecondaryCarrierId] [uniqueidentifier] NOT NULL,
 	[SecondaryCarrierName] [varchar](250) NOT NULL,
-	[CarrierPhoneNumberIDFK] [uniqueidentifier] NOT NULL,
+	[SecondarCarrierContactNumber] [varchar](250) NOT NULL,
 	[Secondary_PH_Name] [varchar](250) NOT NULL,
 	[Secondary_PH_DateOfBirth] [datetime] NOT NULL,
 	[Secondary_PH_Relationship] [varchar](250) NOT NULL,
