@@ -9,41 +9,39 @@ namespace PatientEnrollmentVS.Models
     public class LocationModel
     {
         //Country
-        public string CountryId { get; set; }
+        public string CountryIdFK { get; set; }
         public string CountryName { get; set; }
 
         //Province
-        public string ProvinceId { get; set; }
+        public string ProvinceIdFK { get; set; }
         public string ProvinceName { get; set; }
 
         //Cities
-        public string CityId { get; set; }
+        public string CityIdFK { get; set; }
         public string CityName { get; set; }
 
         //MaritalStatus
-        public string MaritalStatusId { get; set; }
+        public string MaritalStatusIdFK { get; set; }
         public string MaritalStatusDescription { get; set; }
 
-        //Email Type
-        public string EmailTypeId { get; set; }
-        public string EmailTypeDescription { get; set; }
-
-        //Phone Type
-        public string PhoneTypeId { get; set; }
-        public string PhoneTypeDescription { get; set; }
-
         //Gender
-        public string GenderId { get; set; }
+        public string GenderIdFK { get; set; }
         public string GenderDescription { get; set; }
 
         //Patient
+        [Required(ErrorMessage = "Enter Your Name")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Enter Your Last Name")]
         public string LastName { get; set; }
         public string ID_Number { get; set; }
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateOfBirth { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Enter your Email Address")]
+        [RegularExpression(@"^[\w -\._\+%] +@(?:[\w -] +\.)+[\w]{2,6}$", ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
         public string Line1 { get; set; }
         public string Line2 { get; set; }
@@ -51,25 +49,10 @@ namespace PatientEnrollmentVS.Models
         public string EmergencyName { get; set; }
         public string EmergencyLastName { get; set; }
         public string Relationship { get; set; }
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string RelationshipDateOfBirth { get; set; }
-        public string PrimaryCarrierName { get; set; }
-        public string FPolicyHolderPhoneNumber { get; set; }
-        public string FPolicyHolderName { get; set; }
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string FPolicyHolderDateOfBirth { get; set; }
-        public string FPolicyHolderRelationship { get; set; }
-        public string FPolicyHolderGenderIDFK { get; set; }
-        public string SecondaryCarrierName { get; set; }
-        public string SPolicyHolderPhoneNumber { get; set; }
-        public string SPolicyHolderName { get; set; }
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public string SPolicyHolderDateOfBirth { get; set; }
-        public string SPolicyHolderRelationship { get; set; }
-        public string SPolicyHolderGenderIDFK { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
+        public string EmergencyPhoneNumber { get; set; }
+
         public string Message { get; set; }
 
     }

@@ -123,27 +123,11 @@ GO
 CREATE TABLE [Contacts].[Emails](
 	[EmailId] [uniqueidentifier] NOT NULL,
 	[Email] [varchar](250) NOT NULL,
-	[EmailTypeIDFK] [int] NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[UpdateDate] [datetime] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[EmailId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Contacts].[EmailTypes]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Contacts].[EmailTypes](
-	[EmailTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[EmailTypeDescription] [varchar](250) NOT NULL,
-	[UpdateDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[EmailTypeId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -154,8 +138,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Contacts].[EmergencyContacts](
 	[EmergencyId] [uniqueidentifier] NOT NULL,
-	[FirstName/s] [varchar](250) NOT NULL,
+	[FirstName] [varchar](250) NOT NULL,
 	[LastName] [varchar](250) NOT NULL,
+	[PhoneNumber][varchar](250)NOT NULL,
 	[Relationship] [varchar](250) NOT NULL,
 	[DateOfBirth] [datetime] NOT NULL,
 	[IsActive] [bit] NOT NULL,
@@ -174,64 +159,11 @@ GO
 CREATE TABLE [Contacts].[Phones](
 	[PhoneId] [uniqueidentifier] NOT NULL,
 	[PhoneNumber] [varchar](15) NOT NULL,
-	[PhoneTypeIDFK] [int] NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[UpdateDate] [datetime] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[PhoneId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Contacts].[PhoneTypes]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Contacts].[PhoneTypes](
-	[PhoneTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[PhoneTypeDescription] [varchar](250) NOT NULL,
-	[UpdateDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[PhoneTypeId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Insurance].[PrimaryCarrier]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Insurance].[PrimaryCarrier](
-	[PrimaryCarrierId] [uniqueidentifier] NOT NULL,
-	[PrimaryCarrierName] [varchar](250) NOT NULL,
-	[PrimaryCarrierContactNumber] [varchar](250) NOT NULL,
-	[Primary_PH_Name] [varchar](250) NOT NULL,
-	[Primary_PH_DateOfBirth] [datetime] NOT NULL,
-	[Primary_PH_Relationship] [varchar](250) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[PrimaryCarrierId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Insurance].[SecondaryCarrier]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Insurance].[SecondaryCarrier](
-	[SecondaryCarrierId] [uniqueidentifier] NOT NULL,
-	[SecondaryCarrierName] [varchar](250) NOT NULL,
-	[SecondarCarrierContactNumber] [varchar](250) NOT NULL,
-	[Secondary_PH_Name] [varchar](250) NOT NULL,
-	[Secondary_PH_DateOfBirth] [datetime] NOT NULL,
-	[Secondary_PH_Relationship] [varchar](250) NOT NULL,
-	[Secondary_PH_GenderIDFK] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[SecondaryCarrierId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -284,21 +216,6 @@ CREATE TABLE [Location].[Countries](
 PRIMARY KEY CLUSTERED 
 (
 	[CountryId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Location].[Geo]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Location].[Geo](
-	[GeoId] [uniqueidentifier] NOT NULL,
-	[Latitude] [nvarchar](250) NOT NULL,
-	[Longitude] [nvarchar](250) NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[GeoId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -369,8 +286,6 @@ CREATE TABLE [Profile].[Patient](
 	[AddressIDFK] [uniqueidentifier] NOT NULL,
 	[MaritalStatusIDFK] [int] NOT NULL,
 	[EmergencyIDFK] [uniqueidentifier] NOT NULL,
-	[PrimaryCarrier] [uniqueidentifier] NOT NULL,
-	[SecondaryCarrier] [uniqueidentifier] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[PatientId] ASC
@@ -383,35 +298,9 @@ ALTER TABLE [Contacts].[EmergencyContacts] ADD  DEFAULT (newid()) FOR [Emergency
 GO
 ALTER TABLE [Contacts].[Phones] ADD  DEFAULT (newid()) FOR [PhoneId]
 GO
-ALTER TABLE [Insurance].[CarrierPhoneNumber] ADD  DEFAULT (newid()) FOR [CarrierPhoneNumberId]
-GO
-ALTER TABLE [Insurance].[PrimaryCarrier] ADD  DEFAULT (newid()) FOR [PrimaryCarrierId]
-GO
-ALTER TABLE [Insurance].[SecondaryCarrier] ADD  DEFAULT (newid()) FOR [SecondaryCarrierId]
-GO
 ALTER TABLE [Location].[Address] ADD  DEFAULT (newid()) FOR [AddressId]
 GO
-ALTER TABLE [Location].[Geo] ADD  DEFAULT (newid()) FOR [GeoId]
-GO
 ALTER TABLE [Profile].[Patient] ADD  DEFAULT (newid()) FOR [PatientId]
-GO
-ALTER TABLE [Contacts].[Emails]  WITH CHECK ADD FOREIGN KEY([EmailTypeIDFK])
-REFERENCES [Contacts].[EmailTypes] ([EmailTypeId])
-GO
-ALTER TABLE [Contacts].[Phones]  WITH CHECK ADD FOREIGN KEY([PhoneTypeIDFK])
-REFERENCES [Contacts].[PhoneTypes] ([PhoneTypeId])
-GO
-ALTER TABLE [Insurance].[PrimaryCarrier]  WITH CHECK ADD FOREIGN KEY([PrimaryCarrierPhoneNumberIDFK])
-REFERENCES [Insurance].[CarrierPhoneNumber] ([CarrierPhoneNumberId])
-GO
-ALTER TABLE [Insurance].[PrimaryCarrier]  WITH CHECK ADD FOREIGN KEY([Primary_PH_GenderIDFK])
-REFERENCES [Profile].[Gender] ([GenderId])
-GO
-ALTER TABLE [Insurance].[SecondaryCarrier]  WITH CHECK ADD FOREIGN KEY([CarrierPhoneNumberIDFK])
-REFERENCES [Insurance].[CarrierPhoneNumber] ([CarrierPhoneNumberId])
-GO
-ALTER TABLE [Insurance].[SecondaryCarrier]  WITH CHECK ADD FOREIGN KEY([Secondary_PH_GenderIDFK])
-REFERENCES [Profile].[Gender] ([GenderId])
 GO
 ALTER TABLE [Location].[Address]  WITH CHECK ADD FOREIGN KEY([CityIDFK])
 REFERENCES [Location].[Cities] ([CityId])
@@ -439,12 +328,6 @@ REFERENCES [Profile].[MaritalStatus] ([MaritalStatusId])
 GO
 ALTER TABLE [Profile].[Patient]  WITH CHECK ADD FOREIGN KEY([PhoneIDFK])
 REFERENCES [Contacts].[Phones] ([PhoneId])
-GO
-ALTER TABLE [Profile].[Patient]  WITH CHECK ADD FOREIGN KEY([PrimaryCarrier])
-REFERENCES [Insurance].[PrimaryCarrier] ([PrimaryCarrierId])
-GO
-ALTER TABLE [Profile].[Patient]  WITH CHECK ADD FOREIGN KEY([SecondaryCarrier])
-REFERENCES [Insurance].[SecondaryCarrier] ([SecondaryCarrierId])
 GO
 /****** Object:  StoredProcedure [Auth].[Exception]    Script Date: 16-Feb-22 06:19:29 PM ******/
 SET ANSI_NULLS ON
@@ -492,353 +375,7 @@ BEGIN
 
 END
 GO
-/****** Object:  StoredProcedure [Contacts].[spGetEmailType]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 
-CREATE PROC [Contacts].[spGetEmailType]
-(
-	@EmailtypeId INT = 0,
-	@EmailType VARCHAR(250) = ''
-)
-AS
-BEGIN
-SET NOCOUNT ON
-	
-	SELECT CAST(EmailTypeId AS VARCHAR(250)) AS EmailTypeId, EmailTypeDescription 
-	FROM Contacts.EmailTypes WITH(NOLOCK)
-
-SET NOCOUNT OFF
-END
-GO
-/****** Object:  StoredProcedure [Contacts].[spGetPhoneType]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROC [Contacts].[spGetPhoneType]
-(
-	@PhonetypeId INT = 0,
-	@PhoneType VARCHAR(250) = ''
-)
-AS
-BEGIN
-SET NOCOUNT ON
-	
-	SELECT CAST(PhoneTypeId AS VARCHAR(250)) AS PhoneTypeId, PhoneTypeDescription
-	FROM Contacts.PhoneTypes WITH(NOLOCK)
-
-SET NOCOUNT OFF
-END
-GO
-/****** Object:  StoredProcedure [Contacts].[spSaveUserContacts]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE   PROC [Contacts].[spSaveUserContacts]
-(
-	@Email VARCHAR(250) = '',
-	@EmailTypeIDFK INT = 0,
-	@PhoneNumber VARCHAR(15) = '',
-	@PhoneTypeIDK INT = 0,
-	@Messege VARCHAR(250) OUTPUT
-)
-AS
-BEGIN
-
-SET NOCOUNT ON
-
-BEGIN TRY
-
-	
-	/*Declare variables*/	
-	DECLARE @IsActive BIT = 0,
-			@DefaultDate DATETIME = GETDATE(),
-			@UserName VARCHAR(200),
-			@ErrorSchema VARCHAR(200),
-			@ErrorProc VARCHAR(200),
-			@ErrorNumber INT,
-			@ErrorState INT,
-			@ErrorSeverity INT,
-			@ErrorLine INT,
-			@ErrorMessage VARCHAR(200),
-			@ErrorDateTime DATETIME
-	
-	--Transaction 
-	BEGIN TRAN InsertPatient WITH MARK N'Inserting a Patient'
-
-		/*Checking if Email exists and adding both email and phone number*/
-		IF NOT EXISTS( SELECT 1 FROM Contacts.Emails WITH(NOLOCK) WHERE Email = @Email )
-		BEGIN
-
-			SET @IsActive = 1
-	
-			INSERT INTO Contacts.Emails
-			(
-				Email, 
-				EmailTypeIDFK, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@Email, @EmailTypeIDFK, @IsActive, @DefaultDate)
-	
-			INSERT INTO Contacts.Phones
-			(
-				PhoneNumber, 
-				PhoneTypeIDFK, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@PhoneNumber, @PhoneTypeIDK, @IsActive, @DefaultDate)
-
-			SET @Messege = ''
-			
-			--Transaction
-			COMMIT TRAN InsertPatient
-
-		END ELSE
-		BEGIN
-			
-			ROLLBACK TRAN InsertPatient
-	
-			SET @Email = ''
-			SET @EmailTypeIDFK = 0
-			SET @PhoneNumber = ''
-			SET @PhoneTypeIDK = 0
-			SET @Messege = 'Sorry Email already exists please'
-	
-		END
-END TRY
-BEGIN CATCH
-
-		ROLLBACK TRAN InsertPatient
-
-		SET	@UserName = SUSER_SNAME()
-		SET	@ErrorSchema = SCHEMA_NAME()
-		SET @ErrorProc = ERROR_PROCEDURE()
-		SET @ErrorNumber = ERROR_NUMBER()
-		SET @ErrorState = ERROR_STATE()
-		SET @ErrorSeverity = ERROR_SEVERITY()
-		SET @ErrorLine = ERROR_LINE()
-		SET @ErrorMessage = ERROR_MESSAGE()
-		SET @ErrorDateTime = GETDATE()
-	
-	EXEC [Auth].[Exception] @UserName,@ErrorSchema, @ErrorProc, @ErrorNumber, @ErrorState, @ErrorSeverity, @ErrorLine, @ErrorMessage, @ErrorDateTime
-
-
-END CATCH
-
-SET NOCOUNT OFF
-
-END
-GO
-/****** Object:  StoredProcedure [Insurance].[spSavePrimaryCarrier]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROC [Insurance].[spSavePrimaryCarrier]
-(
-	@Name VARCHAR(250),
-	@PhoneNumber VARCHAR(250) = '',
-	@PolicyHolderName VARCHAR(250),
-	@PolicyHolderDateOfBirth DATETIME,
-	@PolicyHolderRelationship VARCHAR(250),
-	@PolicyHolderGenderIDFK INT,
-	@Message VARCHAR(250) OUTPUT
-)
-AS
-BEGIN
-	
-	DECLARE @PhoneNumberIDFK UNIQUEIDENTIFIER = NEWID(),
-			@IsActive BIT = 0,
-			@DefauleDate DATETIME = GETDATE(),
-			@UserName VARCHAR(200),
-			@ErrorSchema VARCHAR(200),
-			@ErrorProc VARCHAR(200),
-			@ErrorNumber INT,
-			@ErrorState INT,
-			@ErrorSeverity INT,
-			@ErrorLine INT,
-			@ErrorMessage VARCHAR(200),
-			@ErrorDateTime DATETIME
-
-SET NOCOUNT ON
-	
-	BEGIN TRY
-
-		IF NOT EXISTS(SELECT 1 FROM Profile.Patient AS PP WITH (NOLOCK) JOIN Insurance.PrimaryCarrier AS IP ON PP.PatientId = IP.PrimaryCarrierId WHERE PrimaryCarrierName = @Name)
-		BEGIN
-
-			/*Inserting into the phone number table*/
-			INSERT INTO Insurance.CarrierPhoneNumber
-			(
-				CarrierPhoneNumber, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@PhoneNumber, @IsActive, @DefauleDate)
-	
-			INSERT INTO Insurance.PrimaryCarrier
-			(
-				PrimaryCarrierName, 
-				PrimaryCarrierPhoneNumberIDFK, 
-				Primary_PH_Name, 
-				Primary_PH_DateOfBirth, 
-				Primary_PH_Relationship, 
-				Primary_PH_GenderIDFK
-			)
-			VALUES(@Name, @PhoneNumberIDFK, @PolicyHolderName, @PolicyHolderDateOfBirth, @PolicyHolderRelationship, @PolicyHolderGenderIDFK)
-		
-		END ELSE 
-		BEGIN
-			
-			INSERT INTO Insurance.CarrierPhoneNumber
-			(
-				CarrierPhoneNumber, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@PhoneNumber, @IsActive, @DefauleDate)
-
-			UPDATE Insurance.PrimaryCarrier 
-			SET PrimaryCarrierName = @PolicyHolderName, 
-				PrimaryCarrierPhoneNumberIDFK = @PhoneNumberIDFK, 
-				Primary_PH_Name = @PolicyHolderName, 
-				Primary_PH_DateOfBirth = @PolicyHolderDateOfBirth, 
-				Primary_PH_Relationship = @PolicyHolderRelationship, 
-				Primary_PH_GenderIDFK = @PolicyHolderGenderIDFK
-			WHERE PrimaryCarrierName = @Name
-
-		END
-
-	END TRY
-	BEGIN CATCH
-	
-		SET	@UserName = SUSER_SNAME()
-			SET	@ErrorSchema = SCHEMA_NAME()
-			SET @ErrorProc = ERROR_PROCEDURE()
-			SET @ErrorNumber = ERROR_NUMBER()
-			SET @ErrorState = ERROR_STATE()
-			SET @ErrorSeverity = ERROR_SEVERITY()
-			SET @ErrorLine = ERROR_LINE()
-			SET @ErrorMessage = ERROR_MESSAGE()
-			SET @ErrorDateTime = GETDATE()
-		
-		EXEC [Auth].[Exception] @UserName,@ErrorSchema, @ErrorProc, @ErrorNumber, @ErrorState, @ErrorSeverity, @ErrorLine, @ErrorMessage, @ErrorDateTime
-	
-	END CATCH
-
-SET NOCOUNT OFF
-END
-GO
-/****** Object:  StoredProcedure [Insurance].[spSaveSecondaryCarrier]    Script Date: 16-Feb-22 06:19:29 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROC [Insurance].[spSaveSecondaryCarrier]
-(
-	@Name VARCHAR(250),
-	@PhoneNumber VARCHAR(250) = '',
-	@PolicyHolderName VARCHAR(250),
-	@PolicyHolderDateOfBirth DATETIME,
-	@PolicyHolderRelationship VARCHAR(250),
-	@PolicyHolderGenderIDFK INT,
-	@Message VARCHAR(250) OUTPUT
-)
-AS
-BEGIN
-	
-	DECLARE @PhoneNumberIDFK UNIQUEIDENTIFIER = NEWID(),
-			@IsActive BIT = 0,
-			@DefauleDate DATETIME = GETDATE(),
-			@UserName VARCHAR(200),
-			@ErrorSchema VARCHAR(200),
-			@ErrorProc VARCHAR(200),
-			@ErrorNumber INT,
-			@ErrorState INT,
-			@ErrorSeverity INT,
-			@ErrorLine INT,
-			@ErrorMessage VARCHAR(200),
-			@ErrorDateTime DATETIME
-
-SET NOCOUNT ON
-	
-	BEGIN TRY
-
-		IF NOT EXISTS(SELECT 1 FROM Profile.Patient AS PP WITH (NOLOCK) JOIN Insurance.SecondaryCarrier AS IP ON PP.PatientId = IP.SecondaryCarrierId WHERE SecondaryCarrierName = @Name)
-		BEGIN
-
-			/*Inserting into the phone number table*/
-			INSERT INTO Insurance.CarrierPhoneNumber
-			(
-				CarrierPhoneNumber, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@PhoneNumber, @IsActive, @DefauleDate)
-	
-			INSERT INTO Insurance.SecondaryCarrier
-			(
-				SecondaryCarrierName, 
-				CarrierPhoneNumberIDFK, 
-				Secondary_PH_Name, 
-				Secondary_PH_DateOfBirth, 
-				Secondary_PH_Relationship, 
-				Secondary_PH_GenderIDFK
-			)
-			VALUES(@Name, @PhoneNumberIDFK, @PolicyHolderName, @PolicyHolderDateOfBirth, @PolicyHolderRelationship, @PolicyHolderGenderIDFK)
-		
-		END ELSE 
-		BEGIN
-			
-			INSERT INTO Insurance.CarrierPhoneNumber
-			(
-				CarrierPhoneNumber, 
-				IsActive, 
-				UpdateDate
-			)
-			VALUES(@PhoneNumber, @IsActive, @DefauleDate)
-
-			UPDATE Insurance.SecondaryCarrier 
-			SET SecondaryCarrierName = @PolicyHolderName, 
-				CarrierPhoneNumberIDFK = @PhoneNumberIDFK, 
-				Secondary_PH_Name = @PolicyHolderName, 
-				Secondary_PH_DateOfBirth = @PolicyHolderDateOfBirth, 
-				Secondary_PH_Relationship = @PolicyHolderRelationship, 
-				Secondary_PH_GenderIDFK = @PolicyHolderGenderIDFK
-			WHERE SecondaryCarrierName = @Name
-
-		END
-
-	END TRY
-	BEGIN CATCH
-	
-			SET	@UserName = SUSER_SNAME()
-			SET	@ErrorSchema = SCHEMA_NAME()
-			SET @ErrorProc = ERROR_PROCEDURE()
-			SET @ErrorNumber = ERROR_NUMBER()
-			SET @ErrorState = ERROR_STATE()
-			SET @ErrorSeverity = ERROR_SEVERITY()
-			SET @ErrorLine = ERROR_LINE()
-			SET @ErrorMessage = ERROR_MESSAGE()
-			SET @ErrorDateTime = GETDATE()
-		
-		EXEC [Auth].[Exception] @UserName,@ErrorSchema, @ErrorProc, @ErrorNumber, @ErrorState, @ErrorSeverity, @ErrorLine, @ErrorMessage, @ErrorDateTime
-	
-	END CATCH
-
-SET NOCOUNT OFF
-END
-GO
 /****** Object:  StoredProcedure [Location].[spGetCities]    Script Date: 16-Feb-22 06:19:29 PM ******/
 SET ANSI_NULLS ON
 GO

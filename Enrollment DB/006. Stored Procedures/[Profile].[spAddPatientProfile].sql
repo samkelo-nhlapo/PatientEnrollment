@@ -20,36 +20,20 @@ CREATE OR ALTER   PROC [Profile].[spAddPatientProfile]
 	@GenderIDFK INT = 0,
 	
 	@PhoneNumber VARCHAR(250) = '',
-	@PhoneTypeIDFK INT = 0,
 	@Email VARCHAR(250) = '',
-	@EmailTypeIDFK INT = 0,
 	@Line1 VARCHAR(250) = '',
-	
 	@Line2 VARCHAR(250) = '',
 	@CityIDFK INT = 0,
+	
 	@ProvinceIDFK INT = 0,
 	@CountryIDFK INT = 0,
 	@MaritalStatusIDFK INT = 0,
-	
 	@MedicationList VARCHAR(MAX) = '',
 	@EmergencyName VARCHAR(250) = '',
+	
 	@EmergencyLastName VARCHAR(250) = '',
 	@Relationship VARCHAR(250) = '',
-	@EmergenceDateOfBirth DATETIME,
-	
-	@PrimaryCarrierName VARCHAR(250) = '',
-	@PrimaryCarrierContactNumber VARCHAR(250) = '',
-	@PPolicyHolderName VARCHAR(250) = '',
-	@PPolicyHolderDateOfBirth DATETIME,
-	@PPolicyHolderRelationship VARCHAR(250) = '',
-	
-	@SecondaryCarrierName VARCHAR(250) = '',
-	@SecondarCarrierContactNumber VARCHAR(250) = '',
-	@SPolicyHolderName VARCHAR(250) = '',
-	@SPolicyHolderDateOfBirth DATETIME,
-	@SPolicyHolderRelationship VARCHAR(250) = '',
-	
-	@SPolicyHolderGenderIDFK INT = 0,
+	@EmergencyPhoneNumber varchar(250) = '',
 	
 	@Message VARCHAR(250) OUTPUT
 )
@@ -58,8 +42,6 @@ BEGIN
 	
 	DECLARE @IsActive BIT = 0,
 			@DefaultDate DATETIME = GETDATE(),
-			@PrimaryCarrierIDFK UNIQUEIDENTIFIER = NEWID(),
-			@SecondaryCarrierIDFK UNIQUEIDENTIFIER = NEWID(),
 			@EmailIDFK UNIQUEIDENTIFIER = NEWID(),
 			@PhoneIDFK UNIQUEIDENTIFIER = NEWID(),
 			@AddressIDFK UNIQUEIDENTIFIER = NEWID(),
@@ -95,22 +77,20 @@ SET NOCOUNT ON
 			(
 				EmailId,
 				Email, 
-				EmailTypeIDFK, 
 				IsActive, 
 				UpdateDate
 			)
-			VALUES(@EmailIDFK, @Email, @EmailTypeIDFK, @IsActive, @DefaultDate)
+			VALUES(@EmailIDFK, @Email, @IsActive, @DefaultDate)
 
 			--INSERT INTO PHONES TABLE
 			INSERT INTO Contacts.Phones
 			(
 				PhoneId,
 				PhoneNumber, 
-				PhoneTypeIDFK, 
 				IsActive, 
 				UpdateDate
 			)
-			VALUES(@PhoneIDFK, @PhoneNumber, @PhoneTypeIDFK, @IsActive, @DefaultDate)
+			VALUES(@PhoneIDFK, @PhoneNumber, @IsActive, @DefaultDate)
 
 			--INSERT INTO ADDRESS TABLE 
 			INSERT INTO Location.Address
@@ -127,38 +107,13 @@ SET NOCOUNT ON
 				EmergencyId,
 				FirstName, 
 				LastName, 
+				PhoneNumber,
 				Relationship, 
-				DateOfBirth, 
 				IsActive, 
 				UpdateDate
 			)
-			VALUES(@EmergencyIDFK, @EmergencyName, @EmergencyLastName, @Relationship, @EmergenceDateOfBirth , @IsActive, @DefaultDate)
+			VALUES(@EmergencyIDFK, @EmergencyName, @EmergencyLastName, @EmergencyPhoneNumber ,@Relationship , @IsActive, @DefaultDate)
 
-		
-			INSERT INTO Insurance.PrimaryCarrier
-			(
-				PrimaryCarrierId,
-				PrimaryCarrierName, 
-				[PrimaryCarrierContactNumber], 
-				Primary_PH_Name, 
-				Primary_PH_DateOfBirth, 
-				Primary_PH_Relationship
-			)
-			VALUES(@PrimaryCarrierIDFK, @PrimaryCarrierName, @PrimaryCarrierContactNumber, @PPolicyHolderName, @PPolicyHolderDateOfBirth, @PPolicyHolderRelationship)
-
-		
-			INSERT INTO Insurance.SecondaryCarrier
-			(
-				SecondaryCarrierId,
-				SecondaryCarrierName, 
-				[SecondarCarrierContactNumber], 
-				Secondary_PH_Name, 
-				Secondary_PH_DateOfBirth, 
-				Secondary_PH_Relationship, 
-				Secondary_PH_GenderIDFK
-			)
-			VALUES(@SecondaryCarrierIDFK, @SecondaryCarrierName, @SecondarCarrierContactNumber, @SPolicyHolderName, @SPolicyHolderDateOfBirth, @SPolicyHolderRelationship, @SPolicyHolderGenderIDFK )
-			
 
 			--INSERT PATIENT TABLE
 			INSERT INTO Profile.Patient
@@ -173,11 +128,9 @@ SET NOCOUNT ON
 				PhoneIDFK, 
 				AddressIDFK, 
 				MaritalStatusIDFK, 
-				EmergencyIDFK, 
-				PrimaryCarrier, 
-				SecondaryCarrier
+				EmergencyIDFK
 			)
-			VALUES(@FirstName, @LastName, @ID_Number ,@DateOfBirth, @GenderIDFK, @MedicationList, @EmailIDFK, @PhoneIDFK, @AddressIDFK, @MaritalStatusIDFK, @EmergencyIDFK, @PrimaryCarrierIDFK, @SecondaryCarrierIDFK)
+			VALUES(@FirstName, @LastName, @ID_Number ,@DateOfBirth, @GenderIDFK, @MedicationList, @EmailIDFK, @PhoneIDFK, @AddressIDFK, @MaritalStatusIDFK, @EmergencyIDFK)
 
 			--COMMIT TRAN
 
@@ -194,9 +147,7 @@ SET NOCOUNT ON
 			SET @DateOfBirth = @DefaultDate
 			SET @GenderIDFK = 0
 			SET @PhoneNumber = ''
-			SET @PhoneTypeIDFK = 0
 			SET @Email = ''
-			SET @EmailTypeIDFK = 0
 			SET @Line1 = ''
 			SET @Line2 = ''
 			SET @CityIDFK = 0
@@ -207,20 +158,7 @@ SET NOCOUNT ON
 			SET @EmergencyName = ''
 			SET @EmergencyLastName = ''
 			SET @Relationship = ''
-			SET @EmergenceDateOfBirth  = @DefaultDate
-			SET @PrimaryCarrierName = ''
-			SET @PrimaryCarrierContactNumber = ''
-			SET @PPolicyHolderName = ''
-			SET @PPolicyHolderDateOfBirth = @DefaultDate
-			SET @PPolicyHolderRelationship = ''
-			SET @SecondaryCarrierName = ''
-			SET @SecondarCarrierContactNumber = ''
-			SET @SPolicyHolderName = ''
-			SET @SPolicyHolderDateOfBirth = @DefaultDate
-			SET @SPolicyHolderRelationship = ''
-			SET @SPolicyHolderGenderIDFK = 0
-			
-			
+
 
 		END
 	END TRY 
