@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a4tSoEEJDJklke0Kr5DD9RNDKD/11+FUOhxSPlMEBzRChvKVb5ZtnzzVbEWEnkTNsnQHap4IHwyryeNleN7h8A==",
+  "dgSpecHash": "4rW5xmplVpobOJimveKD5jX/GrszXY6DrU7xlRdIJE2bti+IZHhmnMf9rNk12gRczjHaHGW0hfB9v6I6c0TNZA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\InsertCities\\InsertCities\\InsertCities.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,8 @@
     "C:\\Users\\Sam\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
     "C:\\Users\\Sam\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512",
     "C:\\Users\\Sam\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\Sam\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\Sam\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\Sam\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
   ],
   "logs": []
 }

@@ -34,12 +34,12 @@ namespace Insert_Cities
                 {
 
                 }
-                for (int rowIndex = 2; rowIndex < count.EndRowIndex + 1; rowIndex++)
+                for (int rowIndex = 3; rowIndex < count.EndRowIndex + 1; rowIndex++)
                 {
                     CityName = doc.GetCellValueAsString(rowIndex, 1);
                     ProvinceId = doc.GetCellValueAsString(rowIndex, 2);
 
-                    using (SqlConnection conn = new SqlConnection("Server = DESKTOP-C5I4DA1\\SQLEXPRESS; Database = PatientEnrollment; Trusted_Connection = True; "))
+                    using (SqlConnection conn = new SqlConnection("Server=localhost,1433;Database=PatientEnrollment;User Id=sa;Password=111GkiPQ25af; "))
                     {
                         //Console.WriteLine("Connected to sql");
                         SqlCommand command = new SqlCommand("Location.spInsertSouthAfrican_Cities", conn);
