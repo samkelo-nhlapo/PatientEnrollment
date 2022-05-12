@@ -22,8 +22,10 @@
 
     <div class="container">
         <div class="row">
+            
             <label>Last Name</label>
             @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "dllLastName", name = "LastName" })
+
         </div>
     </div>
 
@@ -46,11 +48,11 @@
     <div class="container">
         <div class="row">
             <label>Gender</label>
-            @Html.DropDownListFor(x => x.GenderIdFK, new List<SelectListItem>()
+            @Html.DropDownListFor(x => x.GenderIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
                     {
-                        Value = Model.GenderIdFK,
+                        Value = Model.GenderIDFK,
                         Text = Model.GenderDescription,
                         Selected = true
                     }
@@ -95,11 +97,11 @@
         <div class="row">
 
             <label>City</label>
-            @Html.DropDownListFor(x => x.CityIdFK, new List<SelectListItem>()
+            @Html.DropDownListFor(x => x.CityIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
                     {
-                        Value = Model.CityIdFK,
+                        Value = Model.CityIDFK,
                         Text = Model.CityName,
                         Selected = true
                     }
@@ -111,11 +113,11 @@
     <div class="container">
         <div class="row">
             <label>Province</label>
-            @Html.DropDownListFor(x => x.ProvinceIdFK, new List<SelectListItem>()
+            @Html.DropDownListFor(x => x.ProvinceIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
                     {
-                        Value = Model.ProvinceIdFK,
+                        Value = Model.ProvinceIDFK,
                         Text = Model.ProvinceName,
                         Selected = true
                     }
@@ -127,11 +129,11 @@
     <div class="container">
         <div class="row">
             <label>Countries</label>
-            @Html.DropDownListFor(x => x.CountryIdFK, new List<SelectListItem>()
+            @Html.DropDownListFor(x => x.CountryIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
                     {
-                        Value = Model.CountryIdFK,
+                        Value = Model.CountryIDFK,
                         Text = Model.CountryName,
                         Selected = true
                     }
@@ -143,11 +145,11 @@
     <div class="container">
         <div class="row">
             <label>Marital Status</label>
-            @Html.DropDownListFor(x => x.MaritalStatusIdFK, new List<SelectListItem>()
+            @Html.DropDownListFor(x => x.MaritalStatusIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
                     {
-                        Value = Model.MaritalStatusIdFK,
+                        Value = Model.MaritalStatusIDFK,
                         Text = Model.MaritalStatusDescription,
                         Selected = true
                     }
@@ -179,15 +181,7 @@
 
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <label>Relationship</label>
-            @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "dllRelationship", name = "Relationship" })
-
-        </div>
-    </div>
-
+    
     <div class="container">
         <div class="row">
             <label>Emergency Phone Number</label>
@@ -196,9 +190,25 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+        
+            <label>Relationship</label>
+            @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "dllRelationship", name = "Relationship" })
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            
+            <label>Date Of Birth</label>
+            @Html.TextBoxFor(x => x.EmergancyDateOfBirth, new {@class = "select-block", id = "dllEmergancyDateOfBirth",Type = "date", name = "EDateofbirth"})
+        
+        </div>
+    </div>
 
     <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
-
 
 }
 
@@ -215,7 +225,7 @@
                 var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
                 $.each(data, function (i, value) {
 
-                    items += '<option value ="' + value.GenderIdFK + '">' + value.GenderDescription + '</option>';
+                    items += '<option value ="' + value.GenderIDFK + '">' + value.GenderDescription + '</option>';
                     $('#dllGetGender').html(items);
                 })
 
@@ -236,7 +246,7 @@
                 var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
                 $.each(data, function (i, value) {
 
-                    items += '<option value ="' + value.CityIdFK + '">' + value.CityName + '</option>';
+                    items += '<option value ="' + value.CityIDFK + '">' + value.CityName + '</option>';
                     $('#dllGetCities').html(items);
                 })
             },
@@ -260,7 +270,7 @@
 
                         $.each(data, function (i, value) {
 
-                            items += '<option value ="' + value.ProvinceIdFK + '">' + value.ProvinceName + '</option>';
+                            items += '<option value ="' + value.ProvinceIDFK + '">' + value.ProvinceName + '</option>';
                             $('#dllGetProvinces').html(items);
                         })
                     },
@@ -283,7 +293,7 @@
 
                     $.each(data, function (i, value) {
 
-                        items += '<option value ="' + value.CountryIdFK + '">' + value.CountryName + '</option>';
+                        items += '<option value ="' + value.CountryIDFK + '">' + value.CountryName + '</option>';
                         $('#dllGetCountries').html(items);
                     })
                 },
@@ -305,7 +315,7 @@
                         var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
                         $.each(data, function (index, value) {
 
-                            items += '<option value ="' + value.MaritalStatusIdFK + '">' + value.MaritalStatusDescription + '</option>';
+                            items += '<option value ="' + value.MaritalStatusIDFK + '">' + value.MaritalStatusDescription + '</option>';
 
                             $('#dllGetMaritalStatus').html(items);
                         })
@@ -318,6 +328,7 @@
     })
 
 </script>
+
 <script>
 
     function SaveButton() {
@@ -337,7 +348,7 @@
                 alert("Response from response: " + response.responseText);
             }
         })
-
+        /*$("div").text($("#frmHome").serialize());*/
     }
 
 
