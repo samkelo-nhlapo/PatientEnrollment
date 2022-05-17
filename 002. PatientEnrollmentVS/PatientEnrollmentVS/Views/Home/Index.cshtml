@@ -11,6 +11,11 @@
 
 @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
 {
+    <div class="row">
+        <label>Search</label>
+        @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
+        <input type="button" value="Search Patient" class="btn btn-primary" onclick="GetButton()" />    
+    </div>
     <div class="container">
         <div class="row">
 
@@ -210,6 +215,7 @@
 
     <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
 
+
 }
 
 <script type="text/javascript">
@@ -336,7 +342,7 @@
         $.ajax({
             type: "POST",
             url: "/Home/AddPatient",
-            data: $("#frmHome").serialize(),   //.serializa() method creates a text string in standard URL-encoded notation
+            data: $("#frmHome").serialize(),   //.serializa() creates a text string in standard URL-encoded notation
             dataType: 'json',
             success: function (data) {
                 alert("successfully saved ");
@@ -351,6 +357,39 @@
         /*$("div").text($("#frmHome").serialize());*/
     }
 
+    function GetButton()
+    {
+        debugger
 
+        var IDNumber = $('#txtIDSearch').val();
+
+        if (IDNumber == "") {
+            alert("To Search Enter ID Number ")
+        }
+        else {
+
+            var inputData = { IDnumber: IDNumber }
+
+            debugger
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetPatient",
+                data: inputData,
+                async: false,
+                error: function (xhr) {
+                    alert("")
+                },
+                success: function (data) {
+                    debugger
+                    for (key of Object.keys(data)) {
+                        switch (key) {
+                            case ""
+                        }
+                    }
+                }
+            })
+        }
+        
+    }
 
 </script>

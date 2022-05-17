@@ -94,7 +94,8 @@ namespace PatientEnrollmentVS.Controllers
             {
                 SqlCommand cmd = new SqlCommand("Profile.spAddPatientProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                
+                //Sending parameters values to the stored procedure 
                 cmd.Parameters.Add(new SqlParameter("@FirstName", locationModel.FirstName));
                 cmd.Parameters.Add(new SqlParameter("@LastName", locationModel.LastName));
                 cmd.Parameters.Add(new SqlParameter("@ID_Number", locationModel.ID_Number));
@@ -125,6 +126,7 @@ namespace PatientEnrollmentVS.Controllers
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
+
                     locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
 
                     conn.Close();
@@ -138,6 +140,94 @@ namespace PatientEnrollmentVS.Controllers
             }
             return new JsonResult { Data = locationModel, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
+        }
+
+        [HttpGet]
+        public JsonResult GetPatient(string IDnumber = "")
+        {
+            LocationModel locationModel = new LocationModel();
+
+            string conn = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
+
+            using(SqlConnection connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("Profile.spGetPatient", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+                //input 
+                cmd.Parameters.Add(new SqlParameter("@IDNumber", IDnumber));
+                
+                //output
+                cmd.Parameters.Add(new SqlParameter("@FirstName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@LastName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@ID_Number", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@DateOfBirth", SqlDbType.DateTime)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@GenderDescription", SqlDbType.VarChar, 250 )).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(new SqlParameter("@PhoneNumber", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Line1", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Line2", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@CityName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(new SqlParameter("@ProvinceName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@CountryName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@MaritalStatusDescription", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@MedicationList", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@EmergencyName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(new SqlParameter("@EmergencyLastName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@EmergencyPhoneNumber", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Relationship", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@EmergancyDateOfBirth", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(new SqlParameter("@Message", SqlDbType.VarChar.ToString())).Direction = ParameterDirection.Output;
+
+                try
+                {
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+
+                    //Store output parameter value in variables
+                    locationModel.FirstName = Convert.ToString(cmd.Parameters["@FirstName"].Value);
+                    locationModel.LastName = Convert.ToString(cmd.Parameters["@LastName"].Value);
+                    locationModel.ID_Number = Convert.ToString(cmd.Parameters["@ID_Number"].Value);
+                    locationModel.DateOfBirth = Convert.ToDateTime(cmd.Parameters["@DateOfBirth"].Value);
+
+                    locationModel.GenderDescription = Convert.ToString(cmd.Parameters["@GenderDescription"].Value);
+                    locationModel.PhoneNumber = Convert.ToString(cmd.Parameters["@PhoneNumber"].Value);
+                    locationModel.Email = Convert.ToString(cmd.Parameters["@Email"].Value);
+                    locationModel.Line1 = Convert.ToString(cmd.Parameters["@Line1"].Value);
+
+                    locationModel.Line2 = Convert.ToString(cmd.Parameters["@Line2"].Value);
+                    locationModel.CityName = Convert.ToString(cmd.Parameters["@CityName"].Value);
+                    locationModel.ProvinceName = Convert.ToString(cmd.Parameters["@ProvinceName"].Value);
+                    locationModel.CountryName = Convert.ToString(cmd.Parameters["@CountryName"].Value);
+
+                    locationModel.MaritalStatusDescription = Convert.ToString(cmd.Parameters["@MaritalStatusDescription"].Value);
+                    locationModel.MedicationList = Convert.ToString(cmd.Parameters["@MedicationList"].Value);
+                    locationModel.EmergencyName = Convert.ToString(cmd.Parameters["@EmergencyName"].Value);
+                    locationModel.EmergencyLastName = Convert.ToString(cmd.Parameters["@EmergencyLastName"].Value);
+
+                    locationModel.EmergencyPhoneNumber = Convert.ToString(cmd.Parameters["@EmergencyPhoneNumber"].Value);
+                    locationModel.Relationship = Convert.ToString(cmd.Parameters["@Relationship"].Value);
+                    locationModel.EmergancyDateOfBirth = Convert.ToDateTime(cmd.Parameters["@EmergancyDateOfBirth"].Value);
+
+                    locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
+
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+                return new JsonResult { Data = locationModel, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
         }
 
         public static Contxt GetContxt()

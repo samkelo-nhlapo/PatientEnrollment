@@ -8,6 +8,8 @@ namespace PatientEnrollmentVS.Models
 {
     public class LocationModel
     {
+        public string IDNumber { get; set; }
+
         //Country
         public string CountryIDFK { get; set; }
         public string CountryName { get; set; }
