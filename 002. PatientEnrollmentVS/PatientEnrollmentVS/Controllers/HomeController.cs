@@ -145,7 +145,7 @@ namespace PatientEnrollmentVS.Controllers
         [HttpGet]
         public JsonResult GetPatient(string IDnumber = "")
         {
-            LocationModel locationModel = new LocationModel();
+            GetPatientModel locationModel = new GetPatientModel();
 
             string conn = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
 
@@ -162,17 +162,17 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@LastName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@ID_Number", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@DateOfBirth", SqlDbType.DateTime)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@GenderDescription", SqlDbType.VarChar, 250 )).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@GenderIDFK", SqlDbType.Int)).Direction = ParameterDirection.Output;
 
                 cmd.Parameters.Add(new SqlParameter("@PhoneNumber", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@Line1", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@Line2", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CityName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@CityIDFK", SqlDbType.Int)).Direction = ParameterDirection.Output;
 
-                cmd.Parameters.Add(new SqlParameter("@ProvinceName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@CountryName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new SqlParameter("@MaritalStatusDescription", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@ProvinceIDFK", SqlDbType.Int)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@CountryIDFK", SqlDbType.Int)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@MaritalStatusIDFK", SqlDbType.Int)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@MedicationList", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@EmergencyName", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
 
@@ -188,32 +188,60 @@ namespace PatientEnrollmentVS.Controllers
                     connection.Open();
                     cmd.ExecuteNonQuery();
 
-                    //Store output parameter value in variables
-                    locationModel.FirstName = Convert.ToString(cmd.Parameters["@FirstName"].Value);
-                    locationModel.LastName = Convert.ToString(cmd.Parameters["@LastName"].Value);
-                    locationModel.ID_Number = Convert.ToString(cmd.Parameters["@ID_Number"].Value);
-                    locationModel.DateOfBirth = Convert.ToDateTime(cmd.Parameters["@DateOfBirth"].Value);
+                    if(Convert.ToString(cmd.Parameters["@Message"].Value) == "")
+                    {
+                        //Store output parameter value in variables
+                        locationModel.IDNumber = Convert.ToString(cmd.Parameters["@IDNumber"].Value);
+                        locationModel.FirstName = Convert.ToString(cmd.Parameters["@FirstName"].Value);
+                        locationModel.LastName = Convert.ToString(cmd.Parameters["@LastName"].Value);
+                        locationModel.ID_Number = Convert.ToString(cmd.Parameters["@ID_Number"].Value);
+                        locationModel.DateOfBirth = Convert.ToDateTime(cmd.Parameters["@DateOfBirth"].Value);
 
-                    locationModel.GenderDescription = Convert.ToString(cmd.Parameters["@GenderDescription"].Value);
-                    locationModel.PhoneNumber = Convert.ToString(cmd.Parameters["@PhoneNumber"].Value);
-                    locationModel.Email = Convert.ToString(cmd.Parameters["@Email"].Value);
-                    locationModel.Line1 = Convert.ToString(cmd.Parameters["@Line1"].Value);
+                        locationModel.GenderIDFK = Convert.ToInt32(cmd.Parameters["@GenderIDFK"].Value);
+                        locationModel.PhoneNumber = Convert.ToString(cmd.Parameters["@PhoneNumber"].Value);
+                        locationModel.Email = Convert.ToString(cmd.Parameters["@Email"].Value);
+                        locationModel.Line1 = Convert.ToString(cmd.Parameters["@Line1"].Value);
 
-                    locationModel.Line2 = Convert.ToString(cmd.Parameters["@Line2"].Value);
-                    locationModel.CityName = Convert.ToString(cmd.Parameters["@CityName"].Value);
-                    locationModel.ProvinceName = Convert.ToString(cmd.Parameters["@ProvinceName"].Value);
-                    locationModel.CountryName = Convert.ToString(cmd.Parameters["@CountryName"].Value);
+                        locationModel.Line2 = Convert.ToString(cmd.Parameters["@Line2"].Value);
+                        locationModel.CityIDFK = Convert.ToInt32(cmd.Parameters["@CityIDFK"].Value);
+                        locationModel.ProvinceIDFK = Convert.ToInt32(cmd.Parameters["@ProvinceIDFK"].Value);
+                        locationModel.CountryIDFK = Convert.ToInt32(cmd.Parameters["@CountryIDFK"].Value);
 
-                    locationModel.MaritalStatusDescription = Convert.ToString(cmd.Parameters["@MaritalStatusDescription"].Value);
-                    locationModel.MedicationList = Convert.ToString(cmd.Parameters["@MedicationList"].Value);
-                    locationModel.EmergencyName = Convert.ToString(cmd.Parameters["@EmergencyName"].Value);
-                    locationModel.EmergencyLastName = Convert.ToString(cmd.Parameters["@EmergencyLastName"].Value);
+                        locationModel.MaritalStatusIDFK = Convert.ToInt32(cmd.Parameters["@MaritalStatusIDFK"].Value);
+                        locationModel.MedicationList = Convert.ToString(cmd.Parameters["@MedicationList"].Value);
+                        locationModel.EmergencyName = Convert.ToString(cmd.Parameters["@EmergencyName"].Value);
+                        locationModel.EmergencyLastName = Convert.ToString(cmd.Parameters["@EmergencyLastName"].Value);
 
-                    locationModel.EmergencyPhoneNumber = Convert.ToString(cmd.Parameters["@EmergencyPhoneNumber"].Value);
-                    locationModel.Relationship = Convert.ToString(cmd.Parameters["@Relationship"].Value);
-                    locationModel.EmergancyDateOfBirth = Convert.ToDateTime(cmd.Parameters["@EmergancyDateOfBirth"].Value);
+                        locationModel.EmergencyPhoneNumber = Convert.ToString(cmd.Parameters["@EmergencyPhoneNumber"].Value);
+                        locationModel.Relationship = Convert.ToString(cmd.Parameters["@Relationship"].Value);
+                        locationModel.EmergancyDateOfBirth = Convert.ToDateTime(cmd.Parameters["@EmergancyDateOfBirth"].Value);
 
-                    locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
+                        locationModel.Message = "";
+
+                    }
+                    else
+                    {
+                        locationModel.IDNumber = IDnumber;
+                        locationModel.FirstName = "";
+                        locationModel.LastName = "";
+                        locationModel.ID_Number = "";
+                        locationModel.DateOfBirth = DateTime.Now;
+                        locationModel.GenderIDFK = 0;
+                        locationModel.PhoneNumber = "";
+                        locationModel.Email = "";
+                        locationModel.Line1 = "";
+                        locationModel.Line2 = "";
+                        locationModel.CityIDFK = 0;
+                        locationModel.ProvinceIDFK = 0;
+                        locationModel.CountryIDFK = 0;
+                        locationModel.MaritalStatusIDFK = 0;
+                        locationModel.MedicationList = "";
+                        locationModel.EmergencyName = "";
+                        locationModel.EmergencyLastName = "";
+                        locationModel.EmergencyPhoneNumber = "";
+                        locationModel.Relationship = "";
+                        locationModel.EmergancyDateOfBirth = DateTime.Now;
+                    }
 
                 }
                 catch (Exception e)
