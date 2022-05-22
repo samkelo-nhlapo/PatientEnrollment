@@ -377,84 +377,86 @@
 
             debugger
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/Home/GetPatient",
                 data: inputData,
                 async: false,
-                error: function (xhr) {
+                error: function (xhr)
+                {
                     alert("sorry unsuccessful in get method");
                 },
                 success: function (data)
                 {
-                    debugger
-                    for (var key of Object.keys(data)) {
-                        //alert(data[key]);
-                        switch (key) {
-                            case "IDnumber":
-                                document.getElementById('IDNumber').value = data[key];
-                                break;
-                            case "FirstName":
-                                document.getElementById('FirstName').value = data[key];
-                                break;
-                            case "LastName":
-                                document.getElementById('LastName').value = data[key];
-                                break;
-                            case "ID_Number":
-                                document.getElementById('ID_Number').value = data[key];
-                                break;
-                            //case "DateOfBirth":
-                            //    var date = new Date("2015-03-25T12:00:00-06:30")
-                            //    document.getElementById('DateOfBirth').value = date;
-                            //    break;
-                            //case "GenderDescription":
-                            //    document.getElementById('GenderDescription').value = data[key];
-                            //    break;
-                            //case "PhoneNumber":
-                            //    document.getElementById('PhoneNumber').value = data[key];
-                            //    break;
-                            //case "Email":
-                            //    document.getElementById('Email').value = data[key];
-                            //    break;
-                            //case "Line1":
-                            //    document.getElementById('Line1').value = data[key];
-                            //    break;
-                            //case "Line2":
-                            //    document.getElementById('Line2').value = data[key];
-                            //    break;
-                            //case "CityIDKF":
-                            //    document.getElementById('CityIDFK').value = data[key];
-                            //    break;
-                            //case "ProvinceIDFK":
-                            //    document.getElementById('ProvinceIDFK').value = data[key];
-                            //    break;
-                            //case "CountryIDFK":
-                            //    document.getElementById('CountryIDFK').value = data[key];
-                            //    break;
-                            //case "MaritalStatusIDFK":
-                            //    document.getElementById('MaritalStatusIDFK').value = data[key];
-                            //    break;
-                            //case "MedicationList":
-                            //    document.getElementById('MedicationList').value = data[key];
-                            //    break;
-                            //case "EmergencyName":
-                            //    document.getElementById('EmergencyName').value = data[key];
-                            //    break;
-                            //case "EmergencyLastName":
-                            //    document.getElementById('EmergencyLastName').value= data[key];
-                            //    break;
-                            //case "EmergencyPhoneNumber":
-                            //    document.getElementById('EmergencyPhoneNumber').value= data[key];
-                            //    break;
-                            //case "Relationship":
-                            //    document.getElementById('Relationship').value = data[key];
-                            //    break;
-                            //case "EmergancyDateOfBirth":
-                            //    var date = new Date("2015-03-25T12:00:00-06:30")
-                            //    document.getElementById('EmergancyDateOfBirth').value = date;
-                            //    break;
-                            default:
-                        }
-                    }
+                    alert(Object.keys(data));
+                    //debugger
+                    //for (var key of Object.keys(data,)) {
+
+                    //    switch (key) {
+                    //        case "IDNumber":
+                    //            document.getElementById('IDNumber').value = data[key];
+                    //            break;
+                    //        case "FirstName":
+                    //            document.getElementById('FirstName').value = data[key];
+                    //            break; 
+                    //        //case "LastName":
+                    //        //    document.getElementById('LastName').value = data[key];
+                    //        //    break;
+                    //        //case "ID_Number":
+                    //        //    document.getElementById('ID_Number').value = data[key];
+                    //        //    break;
+                    //        //case "DateOfBirth":
+                    //        //    var date = new Date("2015-03-25T12:00:00-06:30")
+                    //        //    document.getElementById('DateOfBirth').value = date;
+                    //        //    break;
+                    //        //case "GenderDescription":
+                    //        //    document.getElementById('GenderDescription').value = data[key];
+                    //        //    break;
+                    //        //case "PhoneNumber":
+                    //        //    document.getElementById('PhoneNumber').value = data[key];
+                    //        //    break;
+                    //        //case "Email":
+                    //        //    document.getElementById('Email').value = data[key];
+                    //        //    break;
+                    //        //case "Line1":
+                    //        //    document.getElementById('Line1').value = data[key];
+                    //        //    break;
+                    //        //case "Line2":
+                    //        //    document.getElementById('Line2').value = data[key];
+                    //        //    break;
+                    //        //case "CityIDKF":
+                    //        //    document.getElementById('CityIDFK').value = data[key];
+                    //        //    break;
+                    //        //case "ProvinceIDFK":
+                    //        //    document.getElementById('ProvinceIDFK').value = data[key];
+                    //        //    break;
+                    //        //case "CountryIDFK":
+                    //        //    document.getElementById('CountryIDFK').value = data[key];
+                    //        //    break;
+                    //        //case "MaritalStatusIDFK":
+                    //        //    document.getElementById('MaritalStatusIDFK').value = data[key];
+                    //        //    break;
+                    //        //case "MedicationList":
+                    //        //    document.getElementById('MedicationList').value = data[key];
+                    //        //    break;
+                    //        //case "EmergencyName":
+                    //        //    document.getElementById('EmergencyName').value = data[key];
+                    //        //    break;
+                    //        //case "EmergencyLastName":
+                    //        //    document.getElementById('EmergencyLastName').value= data[key];
+                    //        //    break;
+                    //        //case "EmergencyPhoneNumber":
+                    //        //    document.getElementById('EmergencyPhoneNumber').value= data[key];
+                    //        //    break;
+                    //        //case "Relationship":
+                    //        //    document.getElementById('Relationship').value = data[key];
+                    //        //    break;
+                    //        //case "EmergancyDateOfBirth":
+                    //        //    var date = new Date("2015-03-25T12:00:00-06:30")
+                    //        //    document.getElementById('EmergancyDateOfBirth').value = date;
+                    //        //    break;
+                    //        default:
+                    //    }
+                    //}
                     /*alert("Successfully in Get method");*/
                 }
             })

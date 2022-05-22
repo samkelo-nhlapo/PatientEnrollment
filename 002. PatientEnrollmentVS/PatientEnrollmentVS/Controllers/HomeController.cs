@@ -142,7 +142,7 @@ namespace PatientEnrollmentVS.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult GetPatient(string IDnumber = "")
         {
             GetPatientModel locationModel = new GetPatientModel();
