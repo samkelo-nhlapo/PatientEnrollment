@@ -7,270 +7,296 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-@* Html.BeginForm to submit form data to the server without whole page postback*@
+@* 
+    Html.BeginForm to submit form data to the server without whole page postback
+    Postback = submitting all the information while the user is still working 
+*@
 
-@using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
-{
-    <hr />
+    @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
+    {
+        <hr />
 
-    <div class="row">
-        <label>Search</label>
-        @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
-        <input type="button" value="Search Patient" class="btn btn-primary" onclick="GetButton()" />    
-    </div>
-    
-    <hr />
-    
-    <div class="container">
         <div class="row">
-
-            <label>First Name</label>
-            @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "dllFirstName", name = "FirstName" })
-
+            <label>Search Patient</label>
+            @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
+            <input type="button" value="Search" class="btn btn-primary" onclick="GetButton()" />
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            
-            <label>Last Name</label>
-            @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "dllLastName", name = "LastName" })
+        <hr />
 
+        <div class="container">
+            <div class="row">
+
+                <label>First Name</label>
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName", name = "dllFirstName" })
+
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>ID Number</label>
-            @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "dllIDNumber", name = "IDNumber" })
+        <div class="container">
+            <div class="row">
 
+                <label>Last Name</label>
+                @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName", name = "dllLastName" })
+
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Date Of Birth</label>
-            @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", type = "date", id = "dllDateOfBirth", name = "DOBirth" })
+        <div class="container">
+            <div class="row">
+                <label>ID Number</label>
+                @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "ID_Number", name = "dllIDNumber" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Gender</label>
-            @Html.DropDownListFor(x => x.GenderIDFK, new List<SelectListItem>()
-                {
-                    new SelectListItem()
+        <div class="container">
+            <div class="row">
+                <label>Date Of Birth</label>
+                @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", type = "date", id = "DateOfBirth", name = "DOBirth" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label>Gender</label>
+                @Html.DropDownListFor(x => x.GenderIDFK, new List<SelectListItem>()
                     {
-                        Value = Model.GenderIDFK,
-                        Text = Model.GenderDescription,
-                        Selected = true
-                    }
-                }, "0", new { @class = "select-block", id = "dllGetGender", name = "Gender" })
+                        new SelectListItem()
+                        {
+                            Value = Model.GenderIDFK,
+                            Text = Model.GenderDescription,
+                            Selected = true
+                        }
+                    }, "0", new { @class = "select-block", id = "dllGetGender", name = "Gender" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Phone number</label>
-            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "dllPhoneNumber", name = "PhoneN" })
+        <div class="container">
+            <div class="row">
+                <label>Phone number</label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "dllPhoneNumber", name = "PhoneN" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Email</label>
-            @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "dllEmail", name = "Email" })
+        <div class="container">
+            <div class="row">
+                <label>Email</label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "dllEmail", name = "Email" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Line 1</label>
-            @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "dllLine1", name = "Line1" })
+        <div class="container">
+            <div class="row">
+                <label>Line 1</label>
+                @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "dllLine1", name = "Line1" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Line 2</label>
-            @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "dllLine2", name = "Line2" })
+        <div class="container">
+            <div class="row">
+                <label>Line 2</label>
+                @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "dllLine2", name = "Line2" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
+        <div class="container">
+            <div class="row">
 
-            <label>City</label>
-            @Html.DropDownListFor(x => x.CityIDFK, new List<SelectListItem>()
-                {
-                    new SelectListItem()
+                <label>City</label>
+                @Html.DropDownListFor(x => x.CityIDFK, new List<SelectListItem>()
                     {
-                        Value = Model.CityIDFK,
-                        Text = Model.CityName,
-                        Selected = true
-                    }
-                }, "0", new { @class = "select-block", id = "dllGetCities", name = "Cities" })
+                        new SelectListItem()
+                        {
+                            Value = Model.CityIDFK,
+                            Text = Model.CityName,
+                            Selected = true
+                        }
+                    }, "0", new { @class = "select-block", id = "dllGetCities", name = "Cities" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Province</label>
-            @Html.DropDownListFor(x => x.ProvinceIDFK, new List<SelectListItem>()
-                {
-                    new SelectListItem()
+        <div class="container">
+            <div class="row">
+                <label>Province</label>
+                @Html.DropDownListFor(x => x.ProvinceIDFK, new List<SelectListItem>()
                     {
-                        Value = Model.ProvinceIDFK,
-                        Text = Model.ProvinceName,
-                        Selected = true
-                    }
-                }, "0", new { @class = "select-block", id = "dllGetProvinces", name = "Provinces" })
+                        new SelectListItem()
+                        {
+                            Value = Model.ProvinceIDFK,
+                            Text = Model.ProvinceName,
+                            Selected = true
+                        }
+                    }, "0", new { @class = "select-block", id = "dllGetProvinces", name = "Provinces" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Countries</label>
-            @Html.DropDownListFor(x => x.CountryIDFK, new List<SelectListItem>()
-                {
-                    new SelectListItem()
+        <div class="container">
+            <div class="row">
+                <label>Countries</label>
+                @Html.DropDownListFor(x => x.CountryIDFK, new List<SelectListItem>()
                     {
-                        Value = Model.CountryIDFK,
-                        Text = Model.CountryName,
-                        Selected = true
-                    }
-                }, "0", new { @class = "select-block", id = "dllGetCountries", name = "Countries" })
+                        new SelectListItem()
+                        {
+                            Value = Model.CountryIDFK,
+                            Text = Model.CountryName,
+                            Selected = true
+                        }
+                    }, "0", new { @class = "select-block", id = "dllGetCountries", name = "Countries" })
 
+            </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Marital Status</label>
-            @Html.DropDownListFor(x => x.MaritalStatusIDFK, new List<SelectListItem>()
-                {
-                    new SelectListItem()
+        <div class="container">
+            <div class="row">
+                <label>Marital Status</label>
+                @Html.DropDownListFor(x => x.MaritalStatusIDFK, new List<SelectListItem>()
                     {
-                        Value = Model.MaritalStatusIDFK,
-                        Text = Model.MaritalStatusDescription,
-                        Selected = true
+                        new SelectListItem()
+                        {
+                            Value = Model.MaritalStatusIDFK,
+                            Text = Model.MaritalStatusDescription,
+                            Selected = true
+                        }
+                    }, "0", new { @class = "select-block", id = "dllGetMaritalStatus", name = "MaritalStatus" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label>Medication List</label>
+                @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "dllMedicationList", name = "MedicationList" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label>Emergency Name</label>
+                @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "dllEmergencyName", name = "EmergencyName" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label>Emergency last Name</label>
+                @Html.TextBoxFor(x => x.EmergencyLastName, new { @class = "select-block", id = "dllEmergencyLastName", name = "EmergencyLastName" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <label>Emergency Phone Number</label>
+                @Html.TextBoxFor(x => x.EmergencyPhoneNumber, new { @class = "select-block", id = "dllEmergencyPhoneNumber", name = "EmergencyPhoneNumber" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <label>Relationship</label>
+                @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "dllRelationship", name = "Relationship" })
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <label>Date Of Birth</label>
+                @Html.TextBoxFor(x => x.EmergancyDateOfBirth, new {@class = "select-block", id = "dllEmergancyDateOfBirth",Type = "date", name = "EDateofbirth"})
+
+            </div>
+        </div>
+
+        <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
+
+
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Home/GetGender",
+                dataType: "json",
+                cache: true,
+                async: true,
+                global: false,
+                success: function (data) {
+
+                    var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                    $.each(data, function (i, value) {
+
+                        items += '<option value ="' + value.GenderIDFK + '">' + value.GenderDescription + '</option>';
+                        $('#dllGetGender').html(items);
+                    })
+
+                },
+                error: function (xhr) {
+                    alert("Gender not successful");
+                }
+            })
+
+            $.ajax({
+                url: "/Home/GetCities",
+                dataType: "json",
+                cache: true,
+                async: true,
+                global: false,
+                success: function (data) {
+
+                    var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                    $.each(data, function (i, value) {
+
+                        items += '<option value ="' + value.CityIDFK + '">' + value.CityName + '</option>';
+                        $('#dllGetCities').html(items);
+                    })
+                },
+                error: function (xhr, response) {
+                    alert("Cities is not successful");
+                }
+            })
+
+            $.ajax
+                (
+                    {
+
+                        url: "/Home/GetProvinces",
+                        dataType: "json",
+                        cache: true,
+                        async: true,
+                        global: false,
+                        success: function (data) {
+
+                            var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+
+                            $.each(data, function (i, value) {
+
+                                items += '<option value ="' + value.ProvinceIDFK + '">' + value.ProvinceName + '</option>';
+                                $('#dllGetProvinces').html(items);
+                            })
+                        },
+                        error: function (xhr) {
+                            alert("Provinces Not successfull")
+                        }
                     }
-                }, "0", new { @class = "select-block", id = "dllGetMaritalStatus", name = "MaritalStatus" })
+                )
 
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <label>Medication List</label>
-            @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "dllMedicationList", name = "MedicationList" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <label>Emergency Name</label>
-            @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "dllEmergencyName", name = "EmergencyName" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <label>Emergency last Name</label>
-            @Html.TextBoxFor(x => x.EmergencyLastName, new { @class = "select-block", id = "dllEmergencyLastName", name = "EmergencyLastName" })
-
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="row">
-            <label>Emergency Phone Number</label>
-            @Html.TextBoxFor(x => x.EmergencyPhoneNumber, new { @class = "select-block", id = "dllEmergencyPhoneNumber", name = "EmergencyPhoneNumber" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-        
-            <label>Relationship</label>
-            @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "dllRelationship", name = "Relationship" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            
-            <label>Date Of Birth</label>
-            @Html.TextBoxFor(x => x.EmergancyDateOfBirth, new {@class = "select-block", id = "dllEmergancyDateOfBirth",Type = "date", name = "EDateofbirth"})
-        
-        </div>
-    </div>
-
-    <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
-
-
-}
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.ajax({
-            url: "/Home/GetGender",
-            dataType: "json",
-            cache: true,
-            async: true,
-            global: false,
-            success: function (data) {
-
-                var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
-                $.each(data, function (i, value) {
-
-                    items += '<option value ="' + value.GenderIDFK + '">' + value.GenderDescription + '</option>';
-                    $('#dllGetGender').html(items);
-                })
-
-            },
-            error: function (xhr) {
-                alert("Gender not successful");
-            }
-        })
-
-        $.ajax({
-            url: "/Home/GetCities",
-            dataType: "json",
-            cache: true,
-            async: true,
-            global: false,
-            success: function (data) {
-
-                var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
-                $.each(data, function (i, value) {
-
-                    items += '<option value ="' + value.CityIDFK + '">' + value.CityName + '</option>';
-                    $('#dllGetCities').html(items);
-                })
-            },
-            error: function (xhr, response) {
-                alert("Cities is not successful");
-            }
-        })
-
-        $.ajax
-            (
-                {
-
-                    url: "/Home/GetProvinces",
+            $.ajax
+                ({
+                    url: "/Home/GetCountries",
                     dataType: "json",
                     cache: true,
                     async: true,
@@ -281,187 +307,162 @@
 
                         $.each(data, function (i, value) {
 
-                            items += '<option value ="' + value.ProvinceIDFK + '">' + value.ProvinceName + '</option>';
-                            $('#dllGetProvinces').html(items);
+                            items += '<option value ="' + value.CountryIDFK + '">' + value.CountryName + '</option>';
+                            $('#dllGetCountries').html(items);
                         })
                     },
-                    error: function (xhr) {
-                        alert("Provinces Not successfull")
+                    error: function (response, xhr) {
+                        alert("Countries is not successful");
                     }
-                }
-            )
+                })
 
-        $.ajax
-            ({
-                url: "/Home/GetCountries",
-                dataType: "json",
-                cache: true,
-                async: true,
-                global: false,
-                success: function (data) {
+            $.ajax
+                (
+                    {
+                        url: "/Home/GetMeritalStatus",
+                        dataType: "json",
+                        cache: true,
+                        async: true,
+                        global: false,
+                        success: function (data) {
 
-                    var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                            var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                            $.each(data, function (index, value) {
 
-                    $.each(data, function (i, value) {
+                                items += '<option value ="' + value.MaritalStatusIDFK + '">' + value.MaritalStatusDescription + '</option>';
 
-                        items += '<option value ="' + value.CountryIDFK + '">' + value.CountryName + '</option>';
-                        $('#dllGetCountries').html(items);
-                    })
-                },
-                error: function (response, xhr) {
-                    alert("Countries is not successful");
-                }
-            })
-
-        $.ajax
-            (
-                {
-                    url: "/Home/GetMeritalStatus",
-                    dataType: "json",
-                    cache: true,
-                    async: true,
-                    global: false,
-                    success: function (data) {
-
-                        var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
-                        $.each(data, function (index, value) {
-
-                            items += '<option value ="' + value.MaritalStatusIDFK + '">' + value.MaritalStatusDescription + '</option>';
-
-                            $('#dllGetMaritalStatus').html(items);
-                        })
-                    },
-                    error: function (xhr) {
-                        alert("Marital status not successfull ");
+                                $('#dllGetMaritalStatus').html(items);
+                            })
+                        },
+                        error: function (xhr) {
+                            alert("Marital status not successfull ");
+                        }
                     }
-                }
-            )
-    })
-
-</script>
-
-<script>
-
-    function SaveButton() {
-        debugger
-        $.ajax({
-            type: "POST",
-            url: "/Home/AddPatient",
-            data: $("#frmHome").serialize(),   //.serializa() creates a text string in standard URL-encoded notation
-            dataType: 'json',
-            success: function (data) {
-                alert("successfully saved ");
-            },
-            error: function (xhr, value, response, data) {
-
-                /*$("div").text($("#frmHome").serialize());*/
-                alert(" value from value: " + value.responseText);
-                alert("Response from response: " + response.responseText);
-            }
+                )
         })
-        /*$("div").text($("#frmHome").serialize());*/
-    }
 
-    function GetButton()
-    {
-        debugger
+    </script>
 
-        var IDNumber = $('#txtIDSearch').val();
+    <script>
 
-        if (IDNumber == "") {
-            alert("To Search Enter ID Number ")
-        }
-        else {
-
-            var inputData = { IDnumber: IDNumber }
-
+        function SaveButton() {
             debugger
             $.ajax({
                 type: "POST",
-                url: "/Home/GetPatient",
-                data: inputData,
-                async: false,
-                error: function (xhr)
-                {
-                    alert("sorry unsuccessful in get method");
+                url: "/Home/AddPatient",
+                data: $("#frmHome").serialize(),   //.serializa() creates a text string in standard URL-encoded notation
+                dataType: 'json',
+                success: function (data) {
+                    alert("successfully saved ");
                 },
-                success: function (data)
-                {
-                    alert(Object.keys(data));
-                    //debugger
-                    //for (var key of Object.keys(data,)) {
+                error: function (xhr, value, response, data) {
 
-                    //    switch (key) {
-                    //        case "IDNumber":
-                    //            document.getElementById('IDNumber').value = data[key];
-                    //            break;
-                    //        case "FirstName":
-                    //            document.getElementById('FirstName').value = data[key];
-                    //            break; 
-                    //        //case "LastName":
-                    //        //    document.getElementById('LastName').value = data[key];
-                    //        //    break;
-                    //        //case "ID_Number":
-                    //        //    document.getElementById('ID_Number').value = data[key];
-                    //        //    break;
-                    //        //case "DateOfBirth":
-                    //        //    var date = new Date("2015-03-25T12:00:00-06:30")
-                    //        //    document.getElementById('DateOfBirth').value = date;
-                    //        //    break;
-                    //        //case "GenderDescription":
-                    //        //    document.getElementById('GenderDescription').value = data[key];
-                    //        //    break;
-                    //        //case "PhoneNumber":
-                    //        //    document.getElementById('PhoneNumber').value = data[key];
-                    //        //    break;
-                    //        //case "Email":
-                    //        //    document.getElementById('Email').value = data[key];
-                    //        //    break;
-                    //        //case "Line1":
-                    //        //    document.getElementById('Line1').value = data[key];
-                    //        //    break;
-                    //        //case "Line2":
-                    //        //    document.getElementById('Line2').value = data[key];
-                    //        //    break;
-                    //        //case "CityIDKF":
-                    //        //    document.getElementById('CityIDFK').value = data[key];
-                    //        //    break;
-                    //        //case "ProvinceIDFK":
-                    //        //    document.getElementById('ProvinceIDFK').value = data[key];
-                    //        //    break;
-                    //        //case "CountryIDFK":
-                    //        //    document.getElementById('CountryIDFK').value = data[key];
-                    //        //    break;
-                    //        //case "MaritalStatusIDFK":
-                    //        //    document.getElementById('MaritalStatusIDFK').value = data[key];
-                    //        //    break;
-                    //        //case "MedicationList":
-                    //        //    document.getElementById('MedicationList').value = data[key];
-                    //        //    break;
-                    //        //case "EmergencyName":
-                    //        //    document.getElementById('EmergencyName').value = data[key];
-                    //        //    break;
-                    //        //case "EmergencyLastName":
-                    //        //    document.getElementById('EmergencyLastName').value= data[key];
-                    //        //    break;
-                    //        //case "EmergencyPhoneNumber":
-                    //        //    document.getElementById('EmergencyPhoneNumber').value= data[key];
-                    //        //    break;
-                    //        //case "Relationship":
-                    //        //    document.getElementById('Relationship').value = data[key];
-                    //        //    break;
-                    //        //case "EmergancyDateOfBirth":
-                    //        //    var date = new Date("2015-03-25T12:00:00-06:30")
-                    //        //    document.getElementById('EmergancyDateOfBirth').value = date;
-                    //        //    break;
-                    //        default:
-                    //    }
-                    //}
-                    /*alert("Successfully in Get method");*/
+                    /*$("div").text($("#frmHome").serialize());*/
+                    alert(" value from value: " + value.responseText);
+                    alert("Response from response: " + response.responseText);
                 }
             })
+            /*$("div").text($("#frmHome").serialize());*/
         }
 
-    }
+        function GetButton()
+        {
+            debugger
 
-</script>
+            var IDNumber = $('#txtIDSearch').val();
+
+            if (IDNumber == "") {
+                alert("To Search Enter ID Number ")
+            }
+            else {
+
+                var inputData = { IDnumber: IDNumber }
+
+                debugger
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/GetPatient",
+                    data: inputData,
+                    async: false,
+                    error: function (xhr)
+                    {
+                        alert("unsuccessful Getting Patient");
+                    },
+                    success: function (data)
+                    {
+                        //Object.keys() returns an array of GetPatient controller Method
+                        debugger
+                        for (var key of Object.keys(data)) {
+                            alert(data[key])
+                            //switch (key) {
+                            //    case "IDNumber":
+                            //        document.getElementById("txtIDSearch").value = data[key];
+                            //        break;
+                            //    case "FirstName":
+                            //        document.getElementById("FirstName").value = data[key];
+                            //        break;
+                            //    case "LastName":
+                            //        document.getElementById("LastName").value = data[key];
+                            //        break;
+                            //    case "ID_Number":
+                            //        document.getElementById("ID_Number").value = data[key];
+                            //        break;
+                            //    case "DateOfBirth":
+                            //        var date = new Date("2015-03-25T12:00:00-06:30")
+                            //        document.getElementById("DateOfBirth").value = date;
+                            //        break;
+                            //    case "GenderIDFK":
+                            //        document.getElementById("dllGetGender").value = data[key];
+                            //        break;
+                            //    case "PhoneNumber":
+                            //        document.getElementById("dllPhoneNumber").value = data[key];
+                            //        break;
+                            //    case "Email":
+                            //        document.getElementById("dllEmail").value = data[key];
+                            //        break;
+                            //    case "Line1":
+                            //        document.getElementById("dllLine1").value = data[key];
+                            //        break;
+                            //    case "Line2":
+                            //        document.getElementById("dllLine2").value = data[key];
+                            //        break;
+                            //    case "CityIDFK":
+                            //        document.getElementById("dllGetCities").value = data[key];
+                            //        break;
+                            //    case "ProvinceIDFK":
+                            //        document.getElementById("dllGetProvinces").value = data[key];
+                            //        break;
+                            //    case "CountryIDFK":
+                            //        document.getElementById("dllGetCountries").value = data[key];
+                            //        break;
+                            //    case "MaritalStatusIDFK":
+                            //        document.getElementById("dllGetMaritalStatus").value = data[key];
+                            //        break;
+                            //    case "MedicationList":
+                            //        document.getElementById("dllMedicationList").value = data[key];
+                            //        break;
+                            //    case "EmergencyName":
+                            //        document.getElementById("dllEmergencyName").value = data[key];
+                            //        break;
+                            //    case "EmergencyLastName":
+                            //        document.getElementById("dllEmergencyLastName").value= data[key];
+                            //        break;
+                            //    case "EmergencyPhoneNumber":
+                            //        document.getElementById("dllEmergencyPhoneNumber").value= data[key];
+                            //        break;
+                            //    case "Relationship":
+                            //        document.getElementById("dllRelationship").value = data[key];
+                            //        break;
+                            //    case "EmergancyDateOfBirth":
+                            //        var date = new Date("2015-03-25T12:00:00-06:30")
+                            //        document.getElementById("dllEmergancyDateOfBirth").value = date;
+                            //        break;
+                            //    default:
+                            //}
+                        }
+                    }
+                })
+            }
+        }
+
+    </script>
