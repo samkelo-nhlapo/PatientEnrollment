@@ -223,14 +223,19 @@
 
         </div>
     </div>
-
+    
+    //Save Data
     <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
+    
+    //Clear Data
+    <input type="reset" value="Clear" class="btn btn-primary" />
 
 
 }
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         $.ajax({
             url: "/Home/GetGender",
             dataType: "json",
@@ -376,10 +381,8 @@
         if (IDNumber == "") {
             alert("To Search Enter ID Number ")
         }
-        else {
-
-
-
+        else
+        {
             var inputData = { IDnumber: IDNumber }
 
             debugger
