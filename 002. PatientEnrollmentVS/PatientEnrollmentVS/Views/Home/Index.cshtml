@@ -6,6 +6,7 @@
 @model LocationModel
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" ></script>
 
 @* 
     Html.BeginForm to submit form data to the server without whole page postback
@@ -15,7 +16,7 @@
     @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
     {
         <hr />
-
+        //HtmlAttributes = 
         <div class="row">
             <label>Search Patient</label>
             @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
@@ -53,7 +54,7 @@
         <div class="container">
             <div class="row">
                 <label>Date Of Birth</label>
-                @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "select-block", type = "date", id = "DateOfBirth", name = "DOBirth" })
+                @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "select-block", id = "DateOfBirth", name = "DOBirth" })
 
             </div>
         </div>
@@ -216,7 +217,7 @@
             <div class="row">
 
                 <label>Date Of Birth</label>
-                @Html.TextBoxFor(x => x.EmergancyDateOfBirth, new {@class = "select-block", id = "dllEmergancyDateOfBirth",Type = "date", name = "EDateofbirth"})
+                @Html.TextBoxFor(x => x.EmergancyDateOfBirth,"{0:dd/MM/yyyy}", new {@class = "select-block", id = "dllEmergancyDateOfBirth", name = "EDateofbirth"})
 
             </div>
         </div>
@@ -376,6 +377,8 @@
             }
             else {
 
+
+
                 var inputData = { IDnumber: IDNumber }
 
                 debugger
@@ -393,8 +396,9 @@
                         //Object.keys() returns an array of GetPatient controller Method
                         debugger
                         for (var key of Object.keys(data)) {
-                            
+
                             switch (key) {
+                                
                                 case "IDNumber":
                                     document.getElementById("txtIDSearch").value = data[key];
                                     break;
@@ -408,7 +412,8 @@
                                     document.getElementById("ID_Number").value = data[key];
                                     break;
                                 case "DateOfBirth":
-                                    var date = new Date("2015-03-25T12:00:00-06:30")
+                                    
+                                    var date = moment(data[key]).format("DD-MMM-YYYY");
                                     document.getElementById("DateOfBirth").value = date;
                                     break;
                                 case "GenderIDFK":
@@ -454,7 +459,7 @@
                                     document.getElementById("dllRelationship").value = data[key];
                                     break;
                                 case "EmergancyDateOfBirth":
-                                    var date = new Date("2015-03-25T12:00:00-06:30")
+                                    var date = moment(data[key]).format("DD-MM-YYYY");
                                     document.getElementById("dllEmergancyDateOfBirth").value = date;
                                     break;
                                 default:

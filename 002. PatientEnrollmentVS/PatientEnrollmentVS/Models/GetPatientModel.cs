@@ -36,9 +36,11 @@ namespace PatientEnrollmentVS.Models
         [Required(ErrorMessage = "Enter Your Last Name")]
         public string LastName { get; set; }
         public string ID_Number { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
+        
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string PhoneNumber { get; set; }
@@ -50,12 +52,16 @@ namespace PatientEnrollmentVS.Models
         public string MedicationList { get; set; }
         public string EmergencyName { get; set; }
         public string EmergencyLastName { get; set; }
+        
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string EmergencyPhoneNumber { get; set; }
         public string Relationship { get; set; }
-        public DateTime EmergancyDateOfBirth { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime EmergancyDateOfBirth { get; set; }
+        
         public string Message { get; set; }
 
     }
