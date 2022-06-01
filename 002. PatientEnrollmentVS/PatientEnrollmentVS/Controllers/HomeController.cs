@@ -120,21 +120,18 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@EmergancyDateOfBirth", locationModel.EmergancyDateOfBirth));
 
 
-                cmd.Parameters.Add(new SqlParameter("@Message", SqlDbType.VarChar.ToString())).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Message", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
 
-                try
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                
+                if(Convert.ToString(cmd.Parameters["@Message"].Value) == "")
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-
-                    locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
-
                     conn.Close();
                 }
-                catch (Exception e)
+                else
                 {
-
-                    Console.WriteLine(e.Message);
+                    locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
                 }
 
             }

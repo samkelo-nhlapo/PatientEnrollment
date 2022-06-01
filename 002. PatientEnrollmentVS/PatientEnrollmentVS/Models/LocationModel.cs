@@ -56,6 +56,7 @@ namespace PatientEnrollmentVS.Models
         public string Relationship { get; set; }
         public DateTime EmergancyDateOfBirth { get; set; }
 
+        //public string LocationMessage { get; set; }
         public string Message { get; set; }
 
     }

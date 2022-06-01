@@ -1,7 +1,7 @@
 USE [PatientEnrollment]
 GO
 
-/****** Object:  StoredProcedure [Profile].[spAddPatientProfile]    Script Date: 20-Apr-22 04:12:31 PM ******/
+/****** Object:  StoredProcedure [Profile].[spAddPatientProfile]    Script Date: 30-May-22 06:02:40 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,7 +11,11 @@ GO
 
 
 
-CREATE OR ALTER   PROC [Profile].[spAddPatientProfile]
+
+
+
+
+ALTER       PROC [Profile].[spAddPatientProfile]
 (
 	@FirstName VARCHAR(250) = '',
 	@LastName VARCHAR(250) = '',
@@ -32,8 +36,10 @@ CREATE OR ALTER   PROC [Profile].[spAddPatientProfile]
 	@EmergencyName VARCHAR(250) = '',
 	
 	@EmergencyLastName VARCHAR(250) = '',
-	@Relationship VARCHAR(250) = '',
 	@EmergencyPhoneNumber varchar(250) = '',
+	@Relationship VARCHAR(250) = '',
+	@EmergancyDateOfBirth DATETIME,
+	
 	
 	@Message VARCHAR(250) OUTPUT
 )
@@ -65,7 +71,7 @@ SET NOCOUNT ON
 
 	BEGIN TRY
 	
-	--BEGIN TRAN
+	BEGIN TRAN
 
 		IF NOT EXISTS(SELECT 1 FROM Profile.Patient WHERE ID_Number = @ID_Number)
 		BEGIN
@@ -102,6 +108,8 @@ SET NOCOUNT ON
 			)
 			VALUES(@AddressIDFK, @Line1, @Line2, @CityIDFK) 
 
+
+			--INSERT INTO EMERGENCY CONTACTS
 			INSERT INTO Contacts.EmergencyContacts
 			(
 				EmergencyId,
@@ -109,10 +117,11 @@ SET NOCOUNT ON
 				LastName, 
 				PhoneNumber,
 				Relationship, 
+				DateOfBirth,
 				IsActive, 
 				UpdateDate
 			)
-			VALUES(@EmergencyIDFK, @EmergencyName, @EmergencyLastName, @EmergencyPhoneNumber ,@Relationship , @IsActive, @DefaultDate)
+			VALUES(@EmergencyIDFK, @EmergencyName, @EmergencyLastName, @EmergencyPhoneNumber ,@Relationship , @EmergancyDateOfBirth , @IsActive, @DefaultDate)
 
 
 			--INSERT PATIENT TABLE
@@ -132,14 +141,16 @@ SET NOCOUNT ON
 			)
 			VALUES(@FirstName, @LastName, @ID_Number ,@DateOfBirth, @GenderIDFK, @MedicationList, @EmailIDFK, @PhoneIDFK, @AddressIDFK, @MaritalStatusIDFK, @EmergencyIDFK)
 
-			--COMMIT TRAN
+			SET @Message = ''
+
+			COMMIT TRAN
 
 		END ELSE 
 		BEGIN
 			
-			--ROLLBACK TRAN
+			ROLLBACK TRAN
 
-			SET @Message = 'Sorry User Email: "'+ @Email + '" Already exists. Please check Email and try again'
+			SET @Message = 'Sorry User ID number: "'+ @ID_Number + '" Already exists, Please validate and try again'
 
 			SET	@FirstName  = ''
 			SET @LastName = ''
@@ -164,6 +175,7 @@ SET NOCOUNT ON
 	END TRY 
 	BEGIN CATCH
 		
+		ROLLBACK TRAN
 		
 		SET	@UserName = SUSER_SNAME()
 		SET	@ErrorSchema = SCHEMA_NAME()

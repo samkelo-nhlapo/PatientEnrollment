@@ -6,8 +6,8 @@
 @model LocationModel
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
-    @* Moment.js library to manipulate date *@
+
+@* Moment.js library to manipulate date *@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
 
 @*
@@ -223,17 +223,28 @@
 
         </div>
     </div>
-    
+
     //Save Data
     <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
-    
+
     //Clear Data
     <input type="reset" value="Clear" class="btn btn-primary" />
 
 
 }
+<script>
+    debugger
+    if ("@Model.Message" != "")
+    {
+    alert("@Model.Message");
+    }
+</script>
+
 
 <script type="text/javascript">
+
+
+
     $(document).ready(function () {
 
         $.ajax({
@@ -353,7 +364,10 @@
 
 <script>
 
+
+
     function SaveButton() {
+
         debugger
         $.ajax({
             type: "POST",
@@ -361,28 +375,25 @@
             data: $("#frmHome").serialize(),   //.serializa() creates a text string in standard URL-encoded notation
             dataType: 'json',
             success: function (data) {
-                alert("successfully saved ");
+
+                alert("Patient Saved successfully");
             },
             error: function (xhr, value, response, data) {
 
-                /*$("div").text($("#frmHome").serialize());*/
                 alert(" value from value: " + value.responseText);
                 alert("Response from response: " + response.responseText);
             }
         })
-        /*$("div").text($("#frmHome").serialize());*/
     }
 
     function GetButton() {
         debugger
-
         var IDNumber = $('#txtIDSearch').val();
 
         if (IDNumber == "") {
             alert("To Search Enter ID Number ")
         }
-        else
-        {
+        else {
             var inputData = { IDnumber: IDNumber }
 
             debugger
@@ -395,6 +406,7 @@
                     alert("unsuccessful Getting Patient");
                 },
                 success: function (data) {
+
                     //Object.keys() returns an array of GetPatient controller Method
                     debugger
                     for (var key of Object.keys(data)) {
