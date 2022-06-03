@@ -16,6 +16,7 @@ namespace PatientEnrollmentVS.Controllers
         public ActionResult Index()
         {
             LocationModel model = new LocationModel();
+
             return View("Index", model);
         }
 
