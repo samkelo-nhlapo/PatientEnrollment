@@ -19,11 +19,14 @@
 {
     <hr />
     //HtmlAttributes =
-    <div class="row">
-        <label>Search Patient</label>
-        @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
-        <input type="button" value="Search" class="btn btn-primary" onclick="GetButton()" />
+    <div class="container">
+        <div class="row">
+            <label>Search Patient</label>
+            @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
+            <input type="button" value="Search" class="btn btn-primary" onclick="GetButton()" />
+        </div>
     </div>
+    
 
     <hr />
 
@@ -227,6 +230,9 @@
     //Save Data
     <input type="button" value="Submit" class="btn btn-primary" onclick="SaveButton()" />
 
+    //Update Data
+    <input type="button" value="Update" class="btn btn-primary" onclick="UpdateButton()" />
+
     //Clear Data
     <input type="reset" value="Clear" class="btn btn-primary" />
 
@@ -236,7 +242,7 @@
     debugger
     if ("@Model.Message" != "")
     {
-    alert("@Model.Message");
+        alert("@Model.Message");
     }
 </script>
 
@@ -384,6 +390,24 @@
                 alert("Response from response: " + response.responseText);
             }
         })
+    }
+
+    function UpdateButton()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Home/UpdatePatient",
+            data: $("#frmHome").serialize(),
+            dataType: 'json',
+            success: function (data)
+            {
+                alert("Updated successfully");
+            },
+            error: function () {
+                alert("Update not successful");
+            }
+        })
+        
     }
 
     function GetButton() {

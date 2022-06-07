@@ -2,9 +2,9 @@ USE PatientEnrollment
 GO
 
 DECLARE @FirstName VARCHAR(250) = 'TEST5',
-	@LastName VARCHAR(250) = 'TEST2',
+	@LastName VARCHAR(250) = 'TEST5',
 	@ID_Number VARCHAR(250) = '005',
-	@DateOfBirth DATETIME = GETDATE(),
+	@DateOfBirth DATETIME = '2022-06-03 12:55:33.680',
 	@GenderIDFK INT = 1,
 	
 	@PhoneNumber VARCHAR(250) = 'TEST4',
@@ -22,7 +22,7 @@ DECLARE @FirstName VARCHAR(250) = 'TEST5',
 	@EmergencyLastName VARCHAR(250) = 'TEST2',
 	@EmergencyPhoneNumber varchar(250) = 'TEST2',
 	@Relationship VARCHAR(250) = 'TEST2',
-	@EmergancyDateOfBirth DATETIME = GETDATE(),
+	@EmergancyDateOfBirth DATETIME = '2022-06-03 12:55:33.680',
 	@IsActive BIT = 1,
 	@DefaultDate DATETIME = GETDATE(),
 	@EmailIDFK UNIQUEIDENTIFIER = NEWID(),
@@ -93,22 +93,18 @@ DECLARE @FirstName VARCHAR(250) = 'TEST5',
 
 		END
 			
-		INSERT INTO Profile.Patient
-			(
-				FirstName, 
-				LastName, 
-				ID_Number,
-				DateOfBirth, 
-				GenderIDFK, 
-				MedicationList, 
-				EmailIDFK, 
-				PhoneIDFK, 
-				AddressIDFK, 
-				MaritalStatusIDFK, 
-				EmergencyIDFK
-			)
-		VALUES(@FirstName, @LastName, @ID_Number ,@DateOfBirth, @GenderIDFK, @MedicationList, @EmailIDFK, @PhoneIDFK, @AddressIDFK, @MaritalStatusIDFK, @EmergencyIDFK)
-		
+		UPDATE Profile.Patient
+		SET FirstName = @FirstName,
+			LastName = @LastName,
+			DateOfBirth = @DateOfBirth,
+			GenderIDFK = @GenderIDFK,
+			MedicationList = @MedicationList,
+			EmailIDFK = @EmailIDFK,
+			PhoneIDFK = @PhoneIDFK,
+			AddressIDFK = @AddressIDFK,
+			MaritalStatusIDFK = @MaritalStatusIDFK,
+			EmergencyIDFK = @EmergencyIDFK
+		WHERE ID_Number = @ID_Number
 
 		
 		--SELECT FirstName = @FirstName , LastName = @LastName , DateOfBirth = @DateOfBirth , GenderIDFK = @GenderIDFK , EmailIDFK = @EmailIDFK , PhoneIDFK = @PhoneIDFK , AddressIDFK = @AddressIDFK , MaritalStatusIDFK = @MaritalStatusIDFK , EmergencyIDFK = @EmergencyIDFK  FROM Profile.Patient WHERE ID_Number = @ID_Number
@@ -119,3 +115,5 @@ DECLARE @FirstName VARCHAR(250) = 'TEST5',
 		PRINT 'Sorry user does not exists'
 
 	END
+
+	SELECT* FROM Profile.Patient WHERE ID_Number = @ID_Number
