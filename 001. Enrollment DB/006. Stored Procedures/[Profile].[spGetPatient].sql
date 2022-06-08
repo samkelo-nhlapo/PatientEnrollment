@@ -46,7 +46,7 @@ BEGIN
 
 	BEGIN TRY
 
-		IF EXISTS(SELECT 1 FROM Profile.Patient WHERE ID_Number = @IDNumber)
+		IF EXISTS(SELECT 1 FROM Profile.Patient WITH(NOLOCK) WHERE ID_Number = @IDNumber)
 		BEGIN
 			
 			SELECT  @FirstName = PP.FirstName,
@@ -68,7 +68,7 @@ BEGIN
 					@EmergencyPhoneNumber = CEC.PhoneNumber,
 					@Relationship = CEC.Relationship,
 					@EmergancyDateOfBirth = CEC.DateOfBirth
-			FROM Profile.Patient AS PP 
+			FROM Profile.Patient AS PP WITH(NOLOCK)
 			INNER JOIN Profile.Gender AS PG ON PP.GenderIDFK = PG.GenderId
 				INNER JOIN Contacts.Phones AS CP ON PP.PhoneIDFK = CP.PhoneId
 					INNER JOIN Contacts.Emails AS CE ON PP.EmailIDFK = CE.EmailId
