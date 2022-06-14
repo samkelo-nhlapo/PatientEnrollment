@@ -1,12 +1,13 @@
 USE [PatientEnrollment]
 GO
 
-/****** Object:  StoredProcedure [Profile].[spUpdatePatient]    Script Date: 07-Jun-22 11:41:01 AM ******/
+/****** Object:  StoredProcedure [Profile].[spUpdatePatient]    Script Date: 14-Jun-22 10:58:53 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 ALTER PROC [Profile].[spUpdatePatient]
@@ -104,9 +105,9 @@ BEGIN
 				VALUES(@EmergencyIDFK, @EmergencyName, @EmergencyLastName, @EmergencyPhoneNumber, @Relationship, @EmergancyDateOfBirth, @IsActive, @DefaultDate)
 	
 				UPDATE Profile.Patient
-				SET FirstName = @EmergencyName,
-					LastName = @EmergencyLastName,
-					DateOfBirth = @EmergancyDateOfBirth,
+				SET FirstName = @FirstName,
+					LastName = @LastName,
+					DateOfBirth = @DateOfBirth,
 					GenderIDFK = @GenderIDFK,
 					MedicationList = @MedicationList,
 					EmailIDFK = @EmailIDFK,

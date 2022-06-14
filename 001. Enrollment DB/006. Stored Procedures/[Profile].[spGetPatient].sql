@@ -1,24 +1,33 @@
-USE PatientEnrollment
+USE [PatientEnrollment]
 GO
 
-CREATE OR ALTER PROC Profile.spGetPatient
+/****** Object:  StoredProcedure [Profile].[spGetPatient]    Script Date: 14-Jun-22 10:41:18 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER   PROC [Profile].[spGetPatient]
 (
-	@IDNumber VARCHAR(250),
+	@IDNumber VARCHAR(250) = '',
 	@FirstName VARCHAR(250) OUTPUT,
 	@LastName VARCHAR(250) OUTPUT,
 	@ID_Number VARCHAR(250) OUTPUT,
 	@DateOfBirth DATETIME OUTPUT,
-	@GenderDescription VARCHAR(250) OUTPUT,
+	@GenderIDFK INT OUTPUT,
 	
 	@PhoneNumber VARCHAR(250) OUTPUT,
 	@Email VARCHAR(250) OUTPUT,
 	@Line1 VARCHAR(250) OUTPUT,
 	@Line2 VARCHAR(250) OUTPUT,
-	@CityName VARCHAR(250) OUTPUT,
+	@CityIDFK INT OUTPUT,
 	
-	@ProvinceName VARCHAR(250) OUTPUT,
-	@CountryName VARCHAR(250) OUTPUT,
-	@MaritalStatusDescription VARCHAR(250) OUTPUT,
+	@ProvinceIDFK INT OUTPUT,
+	@CountryIDFK INT OUTPUT,
+	@MaritalStatusIDFK INT OUTPUT,
 	@MedicationList VARCHAR(MAX) OUTPUT,
 	@EmergencyName VARCHAR(250) OUTPUT,
 	
@@ -53,22 +62,22 @@ BEGIN
 					@LastName = PP.LastName,
 					@ID_Number = PP.ID_Number,
 					@DateOfBirth = pp.DateOfBirth,
-					@GenderDescription = PG.GenderDescription,
+					@GenderIDFK = PG.GenderId,
 					@PhoneNumber = CP.PhoneNumber,
 					@Email = CE.Email, 
 					@Line1 = LA.Line1,
 					@Line2 = LA.Line2,
-					@CityName = LC.CityName,
-					@ProvinceName = LP.ProvinceName,
-					@CountryName = LCO.CountryName,
-					@MaritalStatusDescription = PM.MaritalStatusDescription,
+					@CityIDFK = LC.CityId,
+					@ProvinceIDFK = LP.ProvinceId,
+					@CountryIDFK = LCO.CountryId,
+					@MaritalStatusIDFK = PM.MaritalStatusId,
 					@MedicationList = pp.MedicationList,
 					@EmergencyName = CEC.FirstName,
 					@EmergencyLastName = CEC.LastName,
 					@EmergencyPhoneNumber = CEC.PhoneNumber,
 					@Relationship = CEC.Relationship,
 					@EmergancyDateOfBirth = CEC.DateOfBirth
-			FROM Profile.Patient AS PP WITH(NOLOCK)
+			FROM Profile.Patient AS PP 
 			INNER JOIN Profile.Gender AS PG ON PP.GenderIDFK = PG.GenderId
 				INNER JOIN Contacts.Phones AS CP ON PP.PhoneIDFK = CP.PhoneId
 					INNER JOIN Contacts.Emails AS CE ON PP.EmailIDFK = CE.EmailId
@@ -89,15 +98,15 @@ BEGIN
 			SET @LastName = ''
 			SET @ID_Number = ''
 			SET @DateOfBirth = GETDATE()
-			SET @GenderDescription = ''
+			SET @GenderIDFK = 0
 			SET @PhoneNumber = ''
 			SET @Email = ''
 			SET @Line1 = ''
 			SET @Line2 = ''
-			SET @CityName = ''
-			SET @ProvinceName = ''
-			SET @CountryName = ''
-			SET @MaritalStatusDescription = ''
+			SET @CityIDFK = 0
+			SET @ProvinceIDFK = 0
+			SET @CountryIDFK = 0
+			SET @MaritalStatusIDFK = 0
 			SET @MedicationList = ''
 			SET @EmergencyName = ''
 			SET @EmergencyLastName = ''
@@ -126,3 +135,6 @@ BEGIN
 SET NOCOUNT OFF	
 
 END
+GO
+
+
