@@ -1,12 +1,13 @@
 USE [PatientEnrollment]
 GO
 
-/****** Object:  StoredProcedure [Profile].[spGetPatient]    Script Date: 14-Jun-22 10:41:18 AM ******/
+/****** Object:  StoredProcedure [Profile].[spGetPatient]    Script Date: 14-Jun-22 05:01:54 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 
 
@@ -28,7 +29,7 @@ ALTER   PROC [Profile].[spGetPatient]
 	@ProvinceIDFK INT OUTPUT,
 	@CountryIDFK INT OUTPUT,
 	@MaritalStatusIDFK INT OUTPUT,
-	@MedicationList VARCHAR(MAX) OUTPUT,
+	@MedicationList VARCHAR(250) OUTPUT,
 	@EmergencyName VARCHAR(250) OUTPUT,
 	
 	@EmergencyLastName VARCHAR(250) OUTPUT,
