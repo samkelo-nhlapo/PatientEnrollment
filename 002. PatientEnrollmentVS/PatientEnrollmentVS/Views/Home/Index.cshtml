@@ -18,104 +18,107 @@
 @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
 {
     <hr />
-    //HtmlAttributes =
-    <div class="container">
-        <div class="row">
-            <label>Search Patient</label>
-            @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "select-block" })
-            <input type="button" value="Search" class="btn btn-primary" onclick="GetButton()" />
+    <div class="form-group row">
+        <div class="form-inline">
+            <label for="txtIDSearch" class="col-sm-2 col-form-label">Search Patient</label>
+            <div class="form-group mb-2">
+
+                <div class="col-sm-12">
+
+                    @Html.TextBoxFor(x => x.IDNumber, new { id = "txtIDSearch", @class = "form-control" })
+
+                </div>
+            </div>
+            <input type="button" value="Search" class="btn btn-primary mb-2" onclick="GetButton()" />
         </div>
+
     </div>
     
+    //HtmlAttributes =
+
+
 
     <hr />
 
-    <div class="container">
-        <div class="row">
-
-            <label>First Name</label>
-            @Html.TextBoxFor(x => x.FirstName, new { @class = "select-block", id = "FirstName", name = "dllFirstName" })
-
+    <div class="form-group row">
+        <label for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "FirstName", name = "dllFirstName" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
+    <div class="form-group row">
 
-            <label>Last Name</label>
-            @Html.TextBoxFor(x => x.LastName, new { @class = "select-block", id = "LastName", name = "dllLastName" })
-
+        <label for="LastName" class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "LastName", name = "dllLastName" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>ID Number</label>
-            @Html.TextBoxFor(x => x.ID_Number, new { @class = "select-block", id = "ID_Number", name = "dllIDNumber" })
+    <div class="form-group row">
 
+        <label for="ID_Number" class="col-sm-2 col-form-label">ID Number</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.ID_Number, new { @class = "form-control", id = "ID_Number", name = "dllIDNumber" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Date Of Birth</label>
-            @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "select-block", id = "DateOfBirth", name = "DOBirth" })
+    <div class="form-group row">
 
+        <label for="DateOfBirth" class="col-sm-2 col-form-label">Date Of Birth</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "DateOfBirth", name = "DOBirth" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Gender</label>
+    <div class="form-group row">
+        <label for="dllGetGender" class="col-sm-2 col-form-label">Gender</label>
+        <div class="col-sm-10">
             @Html.DropDownListFor(x => x.GenderIDFK, new List<SelectListItem>()
+            {
+                new SelectListItem()
                 {
-                    new SelectListItem()
-                    {
-                        Value = Model.GenderIDFK,
-                        Text = Model.GenderDescription,
-                        Selected = true
-                    }
-                }, "0", new { @class = "select-block", id = "dllGetGender", name = "Gender" })
+                    Value = Model.GenderIDFK,
+                    Text = Model.GenderDescription,
+                    Selected = true
+                }
+            }, "0", new { @class = "form-control", id = "dllGetGender", name = "Gender" })
 
+        </div>
+        
+    </div>
+
+    <div class="form-group row">
+        <label for="dllPhoneNumber" class="col-sm-2 col-form-label">Phone number</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", id = "dllPhoneNumber", name = "PhoneN" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Phone number</label>
-            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "select-block", id = "dllPhoneNumber", name = "PhoneN" })
-
+    <div class="form-group row">
+        <label for="dllEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "dllEmail", name = "Email" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Email</label>
-            @Html.TextBoxFor(x => x.Email, new { @class = "select-block", id = "dllEmail", name = "Email" })
-
+    <div class="form-group row">
+        <label for="dllLine1" class="col-sm-2 col-form-label">Line 1</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Line1, new { @class = "form-control", id = "dllLine1", name = "Line1" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Line 1</label>
-            @Html.TextBoxFor(x => x.Line1, new { @class = "select-block", id = "dllLine1", name = "Line1" })
-
+    <div class="form-group row">
+        <label for="dllLine2" class="col-sm-2 col-form-label">Line 2</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Line2, new { @class = "form-control", id = "dllLine2", name = "Line2" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Line 2</label>
-            @Html.TextBoxFor(x => x.Line2, new { @class = "select-block", id = "dllLine2", name = "Line2" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <label>City</label>
+    <div class="form-group row">
+        <label for="dllGetCities" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
             @Html.DropDownListFor(x => x.CityIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
@@ -124,14 +127,14 @@
                         Text = Model.CityName,
                         Selected = true
                     }
-                }, "0", new { @class = "select-block", id = "dllGetCities", name = "Cities" })
-
+                }, "0", new { @class = "form-control", id = "dllGetCities", name = "Cities" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Province</label>
+    <div class="form-group row">
+        <label for="dllGetProvinces" class="col-sm-2 col-form-label">Province</label>
+        <div class="col-sm-10">
+            
             @Html.DropDownListFor(x => x.ProvinceIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
@@ -140,14 +143,14 @@
                         Text = Model.ProvinceName,
                         Selected = true
                     }
-                }, "0", new { @class = "select-block", id = "dllGetProvinces", name = "Provinces" })
-
+                }, "0", new { @class = "form-control", id = "dllGetProvinces", name = "Provinces" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Countries</label>
+    <div class="form-group row">
+        <label for="dllGetCountries" class="col-sm-2 col-form-label">Countries</label>
+        <div class="col-sm-10">
+            
             @Html.DropDownListFor(x => x.CountryIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
@@ -156,14 +159,14 @@
                         Text = Model.CountryName,
                         Selected = true
                     }
-                }, "0", new { @class = "select-block", id = "dllGetCountries", name = "Countries" })
-
+                }, "0", new { @class = "form-control", id = "dllGetCountries", name = "Countries" })
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Marital Status</label>
+    <div class="form-group row">
+        <label for="dllGetMaritalStatus" class="col-sm-2 col-form-label">Marital Status</label>
+        <div class="col-sm-10">
+            
             @Html.DropDownListFor(x => x.MaritalStatusIDFK, new List<SelectListItem>()
                 {
                     new SelectListItem()
@@ -172,59 +175,56 @@
                         Text = Model.MaritalStatusDescription,
                         Selected = true
                     }
-                }, "0", new { @class = "select-block", id = "dllGetMaritalStatus", name = "MaritalStatus" })
+                }, "0", new { @class = "form-control", id = "dllGetMaritalStatus", name = "MaritalStatus" })
 
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Medication List</label>
-            @Html.TextBoxFor(x => x.MedicationList, new { @class = "select-block", id = "dllMedicationList", name = "MedicationList" })
+    <div class="form-group row">
+        <label for="dllEmergencyName" class="col-sm-2 col-form-label">Emergency Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.EmergencyName, new { @class = "form-control", id = "dllEmergencyName", type = "textarea", name = "EmergencyName" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dllEmergencyLastName" class="col-sm-2 col-form-label">Emergency last Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.EmergencyLastName, new { @class = "form-control", id = "dllEmergencyLastName", name = "EmergencyLastName" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dllEmergencyPhoneNumber" class="col-sm-2 col-form-label">Emergency Phone Number</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.EmergencyPhoneNumber, new { @class = "form-control", id = "dllEmergencyPhoneNumber", name = "EmergencyPhoneNumber" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dllRelationship" class="col-sm-2 col-form-label">Relationship</label>
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.Relationship, new { @class = "form-control", id = "dllRelationship", name = "Relationship" })
 
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Emergency Name</label>
-            @Html.TextBoxFor(x => x.EmergencyName, new { @class = "select-block", id = "dllEmergencyName", name = "EmergencyName" })
+    <div class="form-group row">
+        <label for="dllEmergancyDateOfBirth" class="col-sm-2 col-form-label">Date Of Birth</label>
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.EmergancyDateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", id = "dllEmergancyDateOfBirth", name = "EDateofbirth" })
 
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <label>Emergency last Name</label>
-            @Html.TextBoxFor(x => x.EmergencyLastName, new { @class = "select-block", id = "dllEmergencyLastName", name = "EmergencyLastName" })
-
+    <div class="form-group row">
+        <label for="dllMedicationList" class="col-sm-2 col-form-label">Medication List</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(x => x.MedicationList, new { @class = "form-control", id = "dllMedicationList", rows = "3", name = "MedicationList" })
         </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <label>Emergency Phone Number</label>
-            @Html.TextBoxFor(x => x.EmergencyPhoneNumber, new { @class = "select-block", id = "dllEmergencyPhoneNumber", name = "EmergencyPhoneNumber" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <label>Relationship</label>
-            @Html.TextBoxFor(x => x.Relationship, new { @class = "select-block", id = "dllRelationship", name = "Relationship" })
-
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-
-            <label>Date Of Birth</label>
-            @Html.TextBoxFor(x => x.EmergancyDateOfBirth, "{0:dd/MM/yyyy}", new { @class = "select-block", id = "dllEmergancyDateOfBirth", name = "EDateofbirth" })
-
-        </div>
+        
     </div>
 
     //Save Data
@@ -392,22 +392,20 @@
         })
     }
 
-    function UpdateButton()
-    {
+    function UpdateButton() {
         $.ajax({
             type: "POST",
             url: "/Home/UpdatePatient",
             data: $("#frmHome").serialize(),
             dataType: 'json',
-            success: function (data)
-            {
+            success: function (data) {
                 alert("Updated successfully");
             },
             error: function () {
                 alert("Update not successful");
             }
         })
-        
+
     }
 
     function GetButton() {
