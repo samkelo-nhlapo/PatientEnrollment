@@ -17,7 +17,10 @@
 
 @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
 {
+    //HtmlAttributes =
+
     <hr />
+    
     <div class="form-group row">
         <div class="form-inline">
             <label for="txtIDSearch" class="col-sm-2 col-form-label">Search Patient</label>
@@ -34,10 +37,6 @@
 
     </div>
     
-    //HtmlAttributes =
-
-
-
     <hr />
 
     <div class="form-group row">
@@ -369,8 +368,6 @@
 </script>
 
 <script>
-
-
 
     function SaveButton() {
 
