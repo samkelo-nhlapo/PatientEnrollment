@@ -15,84 +15,85 @@ namespace PatientEnrollmentVS.Controllers
     {
         public ActionResult Index()
         {
-            LocationModel model = new LocationModel();
+            // Pateint Model instance to Index View
+            PatientModel model = new PatientModel();
 
             return View("Index", model);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
+        // Get gender list 
         public JsonResult GetGender()
         {
             using (var db = GetContxt())
             {
-                var eventGender = db.Database.SqlQuery<LocationModel>(string.Format("Profile.spGetGender")).ToList();
+                var eventGender = db.Database.SqlQuery<PatientModel>(string.Format("Profile.spGetGender")).ToList();
                 return new JsonResult { Data = eventGender, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
 
-        //MaritalStatus Method
+        // get Merital status list 
         public JsonResult GetMeritalStatus()
         {
             using (var db = GetContxt())
             {
-                var eventMerital = db.Database.SqlQuery<LocationModel>(String.Format("Profile.spGetMaritalStatus")).ToList();
+                var eventMerital = db.Database.SqlQuery<PatientModel>(String.Format("Profile.spGetMaritalStatus")).ToList();
                 return new JsonResult { Data = eventMerital, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
 
-        //Country Method
+        // Get Country list 
         public JsonResult GetCountries()
         {
             using (var db = GetContxt())
             {
-                var eventCountries = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCountries")).ToList();
+                var eventCountries = db.Database.SqlQuery<PatientModel>(String.Format("Location.spGetCountries")).ToList();
 
                 return new JsonResult { Data = eventCountries, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
 
-        //Province Method
+        // Get Provincial list 
         public JsonResult GetProvinces()
         {
             using (var db = GetContxt())
             {
-                var eventProvinces = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetProvinces")).ToList();
+                var eventProvinces = db.Database.SqlQuery<PatientModel>(String.Format("Location.spGetProvinces")).ToList();
                 return new JsonResult { Data = eventProvinces, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
 
+        // Get cities list 
         public JsonResult GetCities()
         {
             using (var db = GetContxt())
             {
-                var eventCities = db.Database.SqlQuery<LocationModel>(String.Format("Location.spGetCities")).ToList();
+                var eventCities = db.Database.SqlQuery<PatientModel>(String.Format("Location.spGetCities")).ToList();
 
                 return new JsonResult { Data = eventCities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
 
         }
 
-
+        // Send patient data to the database 
         [HttpPost]
-        public JsonResult AddPatient(LocationModel locationModel)
+        public JsonResult AddPatient(PatientModel locationModel)
         {
+            // Database connection string instance 
             string connection = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connection))
             {
+
                 SqlCommand cmd = new SqlCommand("Profile.spAddPatientProfile", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 
@@ -140,9 +141,11 @@ namespace PatientEnrollmentVS.Controllers
 
         }
 
+        // Return patient data from the database through (ID number)
         [HttpGet]
         public JsonResult GetPatient(string IDnumber = "")
         {
+            // Use GetPatient model instance 
             GetPatientModel locationModel = new GetPatientModel();
 
             string conn = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
@@ -179,7 +182,7 @@ namespace PatientEnrollmentVS.Controllers
                 cmd.Parameters.Add(new SqlParameter("@Relationship", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(new SqlParameter("@EmergancyDateOfBirth", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
 
-                cmd.Parameters.Add(new SqlParameter("@Message", SqlDbType.VarChar.ToString())).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new SqlParameter("@Message", SqlDbType.VarChar, 250)).Direction = ParameterDirection.Output;
 
                 try
                 {
@@ -239,6 +242,8 @@ namespace PatientEnrollmentVS.Controllers
                         locationModel.EmergencyPhoneNumber = "";
                         locationModel.Relationship = "";
                         locationModel.EmergancyDateOfBirth = DateTime.Now;
+
+                        locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
                     }
 
                 }
@@ -257,8 +262,9 @@ namespace PatientEnrollmentVS.Controllers
 
         }
 
+        // Update data to the database
         [HttpPost]
-        public JsonResult UpdatePatient(LocationModel locationModel)
+        public JsonResult UpdatePatient(PatientModel locationModel)
         {
             var DBconnection = ConfigurationManager.ConnectionStrings["EnrollmentEntity"].ConnectionString;
             
@@ -309,6 +315,7 @@ namespace PatientEnrollmentVS.Controllers
             return new JsonResult { Data = locationModel, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        // DbContext method instance 
         public static Contxt GetContxt()
         {
             return new Contxt();

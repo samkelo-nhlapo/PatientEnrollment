@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PatientEnrollmentVS.Models
 {
-    public class LocationModel
+    public class PatientModel
     {
         public string IDNumber { get; set; }
 

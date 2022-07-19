@@ -3,7 +3,7 @@
 }
 
 @using PatientEnrollmentVS.Models;
-@model LocationModel
+@model PatientModel
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -17,7 +17,7 @@
 
 @using (Html.BeginForm("SavePatient", "Home", FormMethod.Post, new { @id = "frmHome" }))
 {
-    //HtmlAttributes =
+    //HtmlAttributes = 
 
     <hr />
     
@@ -410,7 +410,7 @@
         var IDNumber = $('#txtIDSearch').val();
 
         if (IDNumber == "") {
-            alert("To Search Enter ID Number ")
+            alert("Enter ID Number ");
         }
         else {
             var inputData = { IDnumber: IDNumber }

@@ -4,12 +4,14 @@
 # production runtime
 FROM mcr.microsoft.com/dotnet/framework/sdk:3.5 as build-av
 
-WORKDIR /app
+WORKDIR . /app
 
-COPY *.csproject ./
+#
+COPY PatientEnrollmentVS.csproj ./
 RUN ["dotnet", "restore"]
+EXPOSE 80/tcp
 
-# Copy everything else and buld
+# Copy everything else and build
 COPY . /app
 RUN dotnet publish -c Release -o out
 
