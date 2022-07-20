@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  Table [Profile].[MaritalStatus]    Script Date: 13-May-22 02:12:12 PM ******/

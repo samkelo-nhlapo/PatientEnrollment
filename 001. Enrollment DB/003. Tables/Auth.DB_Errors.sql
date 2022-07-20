@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  Table [Auth].[DB_Errors]    Script Date: 13-May-22 02:07:39 PM ******/

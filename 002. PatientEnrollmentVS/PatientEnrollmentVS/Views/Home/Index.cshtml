@@ -237,18 +237,9 @@
 
 
 }
-<script>
-    debugger
-    if ("@Model.Message" != "")
-    {
-        alert("@Model.Message");
-    }
-</script>
 
 
 <script type="text/javascript">
-
-
 
     $(document).ready(function () {
 
@@ -294,29 +285,29 @@
         })
 
         $.ajax
-            (
-                {
+        (
+            {
 
-                    url: "/Home/GetProvinces",
-                    dataType: "json",
-                    cache: true,
-                    async: true,
-                    global: false,
-                    success: function (data) {
+                url: "/Home/GetProvinces",
+                dataType: "json",
+                cache: true,
+                async: true,
+                global: false,
+                success: function (data) {
 
-                        var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                    var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
 
-                        $.each(data, function (i, value) {
+                    $.each(data, function (i, value) {
 
-                            items += '<option value ="' + value.ProvinceIDFK + '">' + value.ProvinceName + '</option>';
-                            $('#dllGetProvinces').html(items);
-                        })
-                    },
-                    error: function (xhr) {
-                        alert("Provinces Not successfull")
-                    }
+                        items += '<option value ="' + value.ProvinceIDFK + '">' + value.ProvinceName + '</option>';
+                        $('#dllGetProvinces').html(items);
+                    })
+                },
+                error: function (xhr) {
+                    alert("Provinces Not successfull")
                 }
-            )
+            }
+        )
 
         $.ajax
             ({
@@ -341,28 +332,28 @@
             })
 
         $.ajax
-            (
-                {
-                    url: "/Home/GetMeritalStatus",
-                    dataType: "json",
-                    cache: true,
-                    async: true,
-                    global: false,
-                    success: function (data) {
+        (
+            {
+                url: "/Home/GetMeritalStatus",
+                dataType: "json",
+                cache: true,
+                async: true,
+                global: false,
+                success: function (data) {
 
-                        var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
-                        $.each(data, function (index, value) {
+                    var items = '<option value ="' + '0' + '">' + 'Select status' + '</option>';
+                    $.each(data, function (index, value) {
 
-                            items += '<option value ="' + value.MaritalStatusIDFK + '">' + value.MaritalStatusDescription + '</option>';
+                        items += '<option value ="' + value.MaritalStatusIDFK + '">' + value.MaritalStatusDescription + '</option>';
 
-                            $('#dllGetMaritalStatus').html(items);
-                        })
-                    },
-                    error: function (xhr) {
-                        alert("Marital status not successfull ");
-                    }
+                        $('#dllGetMaritalStatus').html(items);
+                    })
+                },
+                error: function (xhr) {
+                    alert("Marital status not successfull ");
                 }
-            )
+            }
+        )
     })
 
 </script>
@@ -370,7 +361,7 @@
 <script>
 
     function SaveButton() {
-
+        
         debugger
         $.ajax({
             type: "POST",
@@ -406,28 +397,43 @@
     }
 
     function GetButton() {
-        debugger
+
+        
         var IDNumber = $('#txtIDSearch').val();
 
         if (IDNumber == "") {
             alert("Enter ID Number ");
         }
-        else {
+        else
+        {
             var inputData = { IDnumber: IDNumber }
 
-            debugger
+            
             $.ajax({
                 type: "GET",
                 url: "/Home/GetPatient",
                 data: inputData,
                 async: false,
-                error: function (xhr) {
+                error: function (xhr)
+                {
                     alert("unsuccessful Getting Patient");
                 },
                 success: function (data) {
 
-                    //Object.keys() returns an array of GetPatient controller Method
                     debugger
+                    if ((data = "Message") != "")
+                    {
+                        for (var key of Object.keys(data)) {
+                            switch (key) {
+                                case "Message":
+                                    alert(data[key]);
+                                    break;
+                            }
+                        }
+                    }
+
+                    //Object.keys() returns an array of GetPatient controller Method
+                    
                     for (var key of Object.keys(data)) {
 
                         switch (key) {

@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  StoredProcedure [Profile].[spGetPatient]    Script Date: 14-Jun-22 05:01:54 PM ******/
@@ -11,7 +11,7 @@ GO
 
 
 
-ALTER   PROC [Profile].[spGetPatient]
+CREATE OR ALTER PROC [Profile].[spGetPatient]
 (
 	@IDNumber VARCHAR(250) = '',
 	@FirstName VARCHAR(250) OUTPUT,

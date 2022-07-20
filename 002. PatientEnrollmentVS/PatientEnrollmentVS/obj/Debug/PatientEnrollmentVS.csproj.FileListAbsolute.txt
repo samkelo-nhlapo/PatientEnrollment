@@ -253,8 +253,8 @@ C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentV
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\bin\Newtonsoft.Json.xml
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\bin\Antlr3.Runtime.pdb
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.csproj.AssemblyReference.cache
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.csproj.CoreCompileInputs.cache
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.csproj.CopyComplete
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.dll
 C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.pdb
+C:\Users\Sam\Music\PatientEnrollment\002. PatientEnrollmentVS\PatientEnrollmentVS\obj\Debug\PatientEnrollmentVS.csproj.AssemblyReference.cache

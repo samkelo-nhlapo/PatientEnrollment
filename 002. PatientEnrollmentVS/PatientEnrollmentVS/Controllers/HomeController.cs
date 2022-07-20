@@ -222,6 +222,8 @@ namespace PatientEnrollmentVS.Controllers
                     }
                     else
                     {
+                        locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
+
                         locationModel.IDNumber = IDnumber;
                         locationModel.FirstName = "";
                         locationModel.LastName = "";
@@ -242,8 +244,6 @@ namespace PatientEnrollmentVS.Controllers
                         locationModel.EmergencyPhoneNumber = "";
                         locationModel.Relationship = "";
                         locationModel.EmergancyDateOfBirth = DateTime.Now;
-
-                        locationModel.Message = Convert.ToString(cmd.Parameters["@Message"].Value);
                     }
 
                 }

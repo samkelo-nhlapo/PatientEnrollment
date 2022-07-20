@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  Table [Contacts].[EmergencyContacts]    Script Date: 13-May-22 02:10:50 PM ******/

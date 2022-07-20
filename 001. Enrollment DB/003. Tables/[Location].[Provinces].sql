@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  Table [Location].[Provinces]    Script Date: 13-May-22 02:09:04 PM ******/

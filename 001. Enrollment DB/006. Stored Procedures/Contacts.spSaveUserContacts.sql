@@ -1,12 +1,10 @@
-USE PatientEnrollment
+USE HealthcareForm
 GO
 
 CREATE OR ALTER PROC Contacts.spSaveUserContacts
 (
 	@Email VARCHAR(250) = '',
-	@EmailTypeIDFK INT = 0,
 	@PhoneNumber VARCHAR(15) = '',
-	@PhoneTypeIDK INT = 0,
 	@Messege VARCHAR(250) OUTPUT
 )
 AS

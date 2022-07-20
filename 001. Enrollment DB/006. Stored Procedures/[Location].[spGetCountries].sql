@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  StoredProcedure [Location].[spGetCountries]    Script Date: 13-Feb-22 07:44:05 PM ******/
@@ -10,7 +10,7 @@ GO
 
 
 
-ALTER PROC [Location].[spGetCountries]
+CREATE OR ALTER PROC [Location].[spGetCountries]
 (
 	@CountryId INT = 0,
 	@CountryName VARCHAR(250) = ''

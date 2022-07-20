@@ -1,7 +1,7 @@
-USE PatientEnrollment
+USE HealthcareForm
 GO
 
-CREATE PROC Profile.spGetMaritalStatus
+CREATE OR ALTER PROC Profile.spGetMaritalStatus
 (
 	@MaritalStatusId INT = 0,
 	@MaritalStatusDescription VARCHAR(250) = ''
