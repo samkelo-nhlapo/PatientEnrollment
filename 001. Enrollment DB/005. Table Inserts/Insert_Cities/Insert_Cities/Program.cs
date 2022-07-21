@@ -10,7 +10,7 @@ namespace Insert_Cities
     {
         static void Main(string[] args)
         {
-            var fileName = Path.GetFullPath(@"C:\Users\Sam\Music\PatientEnrollment\Enrollment DB\005. Table Inserts\za.xlsx");
+            var fileName = Path.GetFullPath(@"C:\Users\Sam\Music\PatientEnrollment\001. Enrollment DB\005. Table Inserts\XML files\za.xlsx");
 
             if (fileName is null)
             {
@@ -39,7 +39,7 @@ namespace Insert_Cities
                     CityName = doc.GetCellValueAsString(rowIndex, 1);
                     ProvinceId = doc.GetCellValueAsString(rowIndex, 2);
 
-                    using (SqlConnection conn = new SqlConnection("Server=localhost,1433;Database=PatientEnrollment;User Id=sa;Password=111GkiPQ25af; "))
+                    using (SqlConnection conn = new SqlConnection("Server=localhost,1433;Database=HealthcareForm;User Id=sa;Password=111GkiPQ25af; "))
                     {
                         //Console.WriteLine("Connected to sql");
                         SqlCommand command = new SqlCommand("Location.spInsertSouthAfrican_Cities", conn);

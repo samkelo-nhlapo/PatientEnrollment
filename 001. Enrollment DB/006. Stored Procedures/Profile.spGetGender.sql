@@ -1,4 +1,4 @@
-USE PatientEnrollment
+USE HealthcareForm
 GO
 
 CREATE PROC Profile.spGetGender
@@ -9,11 +9,11 @@ CREATE PROC Profile.spGetGender
 AS
 BEGIN
 
-SET NOCOUNT ON
-
-	SELECT CAST(GenderId AS VARCHAR(250)) AS GenderId, GenderDescription 
-	FROM Profile.Gender WITH(NOLOCK)
-
-SET NOCOUNT OFF
+	SET NOCOUNT ON
+	
+		SELECT CAST(GenderId AS VARCHAR(250)) AS GenderId, GenderDescription 
+		FROM Profile.Gender WITH(NOLOCK)
+	
+	SET NOCOUNT OFF
 
 END

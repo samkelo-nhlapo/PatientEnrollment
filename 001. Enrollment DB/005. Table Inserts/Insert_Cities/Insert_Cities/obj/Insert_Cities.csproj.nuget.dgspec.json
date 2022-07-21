@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj": {}
+    "C:\\Users\\Sam\\Music\\PatientEnrollment\\001. Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj": {
+    "C:\\Users\\Sam\\Music\\PatientEnrollment\\001. Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj",
+        "projectUniqueName": "C:\\Users\\Sam\\Music\\PatientEnrollment\\001. Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj",
         "projectName": "Insert_Cities",
-        "projectPath": "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj",
+        "projectPath": "C:\\Users\\Sam\\Music\\PatientEnrollment\\001. Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\Insert_Cities.csproj",
         "packagesPath": "C:\\Users\\Sam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sam\\Music\\PatientEnrollment\\Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\obj\\",
+        "outputPath": "C:\\Users\\Sam\\Music\\PatientEnrollment\\001. Enrollment DB\\005. Table Inserts\\Insert_Cities\\Insert_Cities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sam\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,6 +59,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.22, 3.1.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

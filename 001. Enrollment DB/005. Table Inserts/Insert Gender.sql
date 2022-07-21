@@ -1,7 +1,8 @@
-USE PatientEnrollment
+USE HealthcareForm
 GO
+DECLARE @ActiveStatus BIT = 0
 
 INSERT INTO Profile.Gender(GenderDescription, IsActive, UpdateDate)
-VALUES('Male', 1, GETDATE()),
-('Female', 1, GETDATE()),
-('Other', 1, GETDATE())
+VALUES('Male', @ActiveStatus , GETDATE()),
+('Female', @ActiveStatus , GETDATE()),
+('Other', @ActiveStatus , GETDATE())

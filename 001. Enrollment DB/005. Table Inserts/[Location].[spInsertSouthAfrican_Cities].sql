@@ -1,4 +1,4 @@
-USE [PatientEnrollment]
+USE HealthcareForm
 GO
 
 /****** Object:  StoredProcedure [Location].[spInsertSouthAfrican_Cities]    Script Date: 17-Feb-22 12:45:22 AM ******/
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-ALTER   PROC [Location].[spInsertSouthAfrican_Cities]
+CREATE OR ALTER   PROC [Location].[spInsertSouthAfrican_Cities]
 (
 	@CityName VARCHAR(250),
 	@Province VARCHAR(250),
